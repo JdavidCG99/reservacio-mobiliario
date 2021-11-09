@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6762CF3D-9788-4B1A-91F3-5B177FDDE247}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Sistema_Reservaciones</RootNamespace>
+    <AssemblyName>Sistema Reservaciones</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="actualizacionClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="actualizacionClientes.Designer.cs">
+      <DependentUpon>actualizacionClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="actualizacionFletes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="actualizacionFletes.Designer.cs">
+      <DependentUpon>actualizacionFletes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="actualizacionProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="actualizacionProductos.Designer.cs">
+      <DependentUpon>actualizacionProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="agregarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="agregarClientes.Designer.cs">
+      <DependentUpon>agregarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="agregarFletes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="agregarFletes.Designer.cs">
+      <DependentUpon>agregarFletes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="agregarProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="agregarProductos.Designer.cs">
+      <DependentUpon>agregarProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoCompleClass.cs" />
+    <Compile Include="avctualizarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="avctualizarUsuario.Designer.cs">
+      <DependentUpon>avctualizarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="catalogoClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="catalogoClientes.Designer.cs">
+      <DependentUpon>catalogoClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="catalogoFletes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="catalogoFletes.Designer.cs">
+      <DependentUpon>catalogoFletes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientesReservacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientesReservacion.Designer.cs">
+      <DependentUpon>ClientesReservacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion.cs" />
+    <Compile Include="catalogoProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="catalogoProductos.Designer.cs">
+      <DependentUpon>catalogoProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="conexion2.cs" />
+    <Compile Include="corte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="corte.Designer.cs">
+      <DependentUpon>corte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="depositos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="depositos.Designer.cs">
+      <DependentUpon>depositos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DineroRetenido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DineroRetenido.Designer.cs">
+      <DependentUpon>DineroRetenido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarReservacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarReservacion.Designer.cs">
+      <DependentUpon>EditarReservacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ElegirCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElegirCliente.Designer.cs">
+      <DependentUpon>ElegirCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="entegasDiarias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="entegasDiarias.Designer.cs">
+      <DependentUpon>entegasDiarias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ganancia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ganancia.Designer.cs">
+      <DependentUpon>ganancia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gastos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gastos.Designer.cs">
+      <DependentUpon>gastos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="imprimir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="imprimir.Designer.cs">
+      <DependentUpon>imprimir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="inicio.Designer.cs">
+      <DependentUpon>inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="materialFuera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="materialFuera.Designer.cs">
+      <DependentUpon>materialFuera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menu_inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menu_inicio.Designer.cs">
+      <DependentUpon>menu_inicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductosFaltantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductosFaltantes.Designer.cs">
+      <DependentUpon>ProductosFaltantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="recoleccionesDiarias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recoleccionesDiarias.Designer.cs">
+      <DependentUpon>recoleccionesDiarias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="registroFaltante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registroFaltante.Designer.cs">
+      <DependentUpon>registroFaltante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reservacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reservacion.Designer.cs">
+      <DependentUpon>reservacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validaciones.cs" />
+    <Compile Include="verInfoReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="verInfoReserva.Designer.cs">
+      <DependentUpon>verInfoReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="verReservaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="verReservaciones.Designer.cs">
+      <DependentUpon>verReservaciones.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="actualizacionClientes.resx">
+      <DependentUpon>actualizacionClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="actualizacionFletes.resx">
+      <DependentUpon>actualizacionFletes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="actualizacionProductos.resx">
+      <DependentUpon>actualizacionProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="agregarClientes.resx">
+      <DependentUpon>agregarClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="agregarFletes.resx">
+      <DependentUpon>agregarFletes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="agregarProductos.resx">
+      <DependentUpon>agregarProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="avctualizarUsuario.resx">
+      <DependentUpon>avctualizarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="catalogoClientes.resx">
+      <DependentUpon>catalogoClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="catalogoFletes.resx">
+      <DependentUpon>catalogoFletes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="catalogoProductos.resx">
+      <DependentUpon>catalogoProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientesReservacion.resx">
+      <DependentUpon>ClientesReservacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="corte.resx">
+      <DependentUpon>corte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="depositos.resx">
+      <DependentUpon>depositos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DineroRetenido.resx">
+      <DependentUpon>DineroRetenido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarReservacion.resx">
+      <DependentUpon>EditarReservacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ElegirCliente.resx">
+      <DependentUpon>ElegirCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="entegasDiarias.resx">
+      <DependentUpon>entegasDiarias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ganancia.resx">
+      <DependentUpon>ganancia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gastos.resx">
+      <DependentUpon>gastos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imprimir.resx">
+      <DependentUpon>imprimir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="inicio.resx">
+      <DependentUpon>inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="materialFuera.resx">
+      <DependentUpon>materialFuera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu_inicio.resx">
+      <DependentUpon>menu_inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductosFaltantes.resx">
+      <DependentUpon>ProductosFaltantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="recoleccionesDiarias.resx">
+      <DependentUpon>recoleccionesDiarias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="registroFaltante.resx">
+      <DependentUpon>registroFaltante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reservacion.resx">
+      <DependentUpon>reservacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="verInfoReserva.resx">
+      <DependentUpon>verInfoReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="verReservaciones.resx">
+      <DependentUpon>verReservaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

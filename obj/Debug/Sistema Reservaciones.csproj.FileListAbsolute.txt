@@ -1,0 +1,66 @@
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\bin\Debug\Sistema Reservaciones.exe.config
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\bin\Debug\Sistema Reservaciones.exe
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\bin\Debug\Sistema Reservaciones.pdb
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.csprojAssemblyReference.cache
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.Properties.Resources.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.csproj.GenerateResource.cache
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.csproj.CoreCompileInputs.cache
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.exe
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.pdb
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.actualizacionProductos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.Productos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.agregarProductos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.catalogoClientes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.actualizacionClientes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.agregarClientes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.agregarFletes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.catalogoFletes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.actualizacionFletes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.inicio.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.ganancia.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.EditarReservacion.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.entegasDiarias.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.imprimir.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.menu_inicio.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.recoleccionesDiarias.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.reservacion.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.verInfoReserva.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.verReservaciones.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\bin\Debug\Sistema Reservaciones.exe.config
+C:\Sistema Reservaciones\Sistema Reservaciones\bin\Debug\Sistema Reservaciones.exe
+C:\Sistema Reservaciones\Sistema Reservaciones\bin\Debug\Sistema Reservaciones.pdb
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.actualizacionClientes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.actualizacionFletes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.actualizacionProductos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.agregarClientes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.agregarFletes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.agregarProductos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.catalogoClientes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.catalogoFletes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.Productos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.ClientesReservacion.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.corte.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.EditarReservacion.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.entegasDiarias.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.ganancia.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.Gastos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.imprimir.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.inicio.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.menu_inicio.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.Properties.Resources.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.recoleccionesDiarias.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.reservacion.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.verInfoReserva.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.verReservaciones.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.csproj.GenerateResource.cache
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.csproj.CoreCompileInputs.cache
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.exe
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.pdb
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema Reservaciones.csprojAssemblyReference.cache
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.materialFuera.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.DineroRetenido.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.ElegirCliente.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.registroFaltante.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.ProductosFaltantes.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.depositos.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.avctualizarUsuario.resources
