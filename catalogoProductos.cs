@@ -97,7 +97,6 @@ namespace Sistema_Reservaciones
         private void gvProd_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ActiveForm.Hide();
-            //this.Close();
             actualizacionProductos actualizacionProductos = new actualizacionProductos();
             actualizacionProductos.Show();
 

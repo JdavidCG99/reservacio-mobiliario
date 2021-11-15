@@ -72,7 +72,6 @@ namespace Sistema_Reservaciones
 
 				MessageBox.Show("Cliente Capturado Exitosamente!", "Guardar");
 
-				//ActiveForm.Close();
 				if (!reserva)
 				{
 					catalogoClientes catalogoClientes = new catalogoClientes();
@@ -95,8 +94,6 @@ namespace Sistema_Reservaciones
 
             if (result == DialogResult.OK)
             {
-                //ActiveForm.Close();
-
                 catalogoClientes catalogoClientes = new catalogoClientes();
                 catalogoClientes.Show();
                 this.Close();

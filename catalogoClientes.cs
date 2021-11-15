@@ -37,8 +37,6 @@ namespace Sistema_Reservaciones
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //ActiveForm.Hide();
-            //this.Close();
             agregarClientes agregarClientes = new agregarClientes();
             agregarClientes.Show();
             this.Close();
@@ -78,7 +76,6 @@ namespace Sistema_Reservaciones
         private void gvClientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ActiveForm.Hide();
-            //this.Close();
             actualizacionClientes actualizacionClientes = new actualizacionClientes();
             actualizacionClientes.Show();
 

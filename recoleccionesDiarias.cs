@@ -35,9 +35,7 @@ namespace Sistema_Reservaciones
 				" r.nombre as Nombre_Cliente,f.ubicacion,dr.idProductos,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
 				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
 				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "'";
-			//string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-			//	"r.nombre as Nombre_Cliente,f.ubicacion,r.volvio as Regreso  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
-   //             "where estatus=1 and fechaRegreso='" + dtDia.Text + "'";
+
             gvReservaciones.DataSource = bdd.llenarVistas(query);
         }
 
@@ -64,7 +62,6 @@ namespace Sistema_Reservaciones
 			DialogResult yus = MessageBox.Show("Segura que quieres posponer esta reservacion"
 			   , "Atencion", MessageBoxButtons.YesNo);
 			if (yus == DialogResult.Yes) {
-				//MessageBox.Show(resrevacion,"Atencion");
 				string query = "update Reserva set fechaRegreso = '"+dtpos.Text+"' where idReserva="+resrevacion;
 				bdd.ejecutar(query);
 				string query2 = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
@@ -74,7 +71,6 @@ namespace Sistema_Reservaciones
 				gvReservaciones.DataSource = bdd.llenarVistas(query2);
 
 			}
-			//btnPosponer.Enabled = false;
 
 		}
 		private void btnSalida_Click(object sender, EventArgs e)
@@ -84,8 +80,6 @@ namespace Sistema_Reservaciones
 			   , "Atencion", MessageBoxButtons.YesNo);
 			if (yus == DialogResult.Yes)
 			{
-				//MessageBox.Show(resrevacion,"Atencion");
-				//DateTime fn = DateTime.Now.Date - 1;
 				string query = "update Reserva set volvio = 'Si' , fechaRegreso='"+ DateTime.Now.AddDays(-1).ToShortDateString() + "' where idReserva=" + resrevacion;
 				bdd.ejecutar(query);
 				string query2 = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +

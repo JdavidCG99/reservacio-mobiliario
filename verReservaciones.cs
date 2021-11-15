@@ -15,7 +15,7 @@ namespace Sistema_Reservaciones
         Conexion conexion = new Conexion();
 		Conexion2 conexion2 = new Conexion2();
 		Validaciones validar = new Validaciones();
-        //string idReservacion;
+
         public verReservaciones()
         {
             InitializeComponent();
@@ -94,7 +94,6 @@ namespace Sistema_Reservaciones
             mostarInfoReserva(idActual);
         }
         private void mostarInfoReserva(string idActual) {
-            //string idActual = gvReservaciones.Rows[e.RowIndex].Cells[0].Value.ToString();
             string query = "select d.idProductos as Id,p.nombre as Nombre,p.descripcion as Descripcion," +
                 "d.cantidad as Cantidad,p.precioVenta as Precio, d.total as Total from Detalle_Reserva as d " +
                 "inner join Productos as p on d.idProductos=p.idProductos where d.idReserva=" + idActual + " and estatus=1 and cantidad> 0";
@@ -105,26 +104,22 @@ namespace Sistema_Reservaciones
             string restante = Convert.ToString(conexion.getUnDato("select restante from Reserva where estatus=1 and idReserva=" + idActual));
             string anticipo = Convert.ToString(conexion.getUnDato("select anticipo from Reserva where estatus=1 and idReserva=" + tbId.Text));
 			string flete = Convert.ToString(conexion.getUnDato("select flete from Reserva where estatus=1 and idReserva=" + tbId.Text));
-			//tbTotal.Text = idActual;
 			tbFlete.Text = flete;
             tbTotal.Text = total;
             tbDeposito.Text = deposito;
             tbRestante.Text = restante;
             tbAnticipo.Text = anticipo;
+
             if (restante.Equals("0"))
             {
                 MessageBox.Show("Esta reservacion ya esta liquidada", "Atencion");
                 tbMulta.ReadOnly = false;
-                //rbSi.Enabled = false;
-                //rbNo.Enabled = false;
                 tbAbono.ReadOnly = true;
                 btnAbonar.Enabled = false;
                 btnLiquidar.Enabled = false;
             }
             else {
                 tbMulta.ReadOnly = false;
-                //rbSi.Enabled = true;
-                //rbNo.Enabled = true;
                 tbAbono.ReadOnly = false;
                 btnAbonar.Enabled = true;
                 btnLiquidar.Enabled = true;
@@ -136,17 +131,11 @@ namespace Sistema_Reservaciones
             {
                 if (!tbRestante.Equals(""))
                 {
-                    //{
                     if (tbAbono.TextLength > 0)
                     {
                         double abono = Convert.ToDouble(tbAbono.Text);
                         double res = Convert.ToDouble(conexion.getUnDato("select restante from Reserva where estatus=1 and idReserva=" + tbId.Text));
-                        //    int deposito = conexion.getUnDato("select deposito from Reserva where estatus=1 and idReserva=" + tbId.Text);
-                        //    int anticipo = conexion.getUnDato("select anticipo from Reserva where estatus=1 and idReserva=" + tbId.Text);
-                        //    int total = conexion.getUnDato("select total from Reserva where estatus=1 and idReserva=" + tbId.Text);
-                        //    if (rbNo.Checked==true) {
-                        //        restante = restante - deposito;
-                        //    }
+
                         if (abono > res)
                         {
                             MessageBox.Show("El abono no puede ser mayor a lo restante", "Atencion");
@@ -157,7 +146,6 @@ namespace Sistema_Reservaciones
                             " \nNo existe manera de revertir esta accion una vez cargada", "Atencion", MessageBoxButtons.YesNo);
                             if (yus == DialogResult.Yes && tbId.TextLength > 0)
                             {
-								//double rest = Convert.ToDouble(tbRestante.Text) - Convert.ToDouble(tbDeposito.Text);
 								string entrada2 = conexion.getUnDato("select Sum(convert(numeric(10, 2), (Cantidad))) AS 'Ganancia' from entradaDepositos where idReserva =" + tbId.Text);
 								if (entrada2.Equals(""))
 								{
@@ -168,7 +156,6 @@ namespace Sistema_Reservaciones
 
 
 								double rest = Convert.ToDouble(tbRestante.Text) - depositofaltante;
-								//		//double abono = Convert.ToDouble()
 								if (abono <= rest)
 								{
 									double anticipo = Convert.ToDouble(tbAnticipo.Text) + Convert.ToDouble(tbAbono.Text);
@@ -176,9 +163,6 @@ namespace Sistema_Reservaciones
 									double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
 									tbRestante.Text = Convert.ToString(restante);
 
-									//restante = total - anticipo;
-									//string a = Convert.ToString(anticipo);
-									//string r = Convert.ToString(restante);
 
 									conexion.ejecutar("update Reserva set total=" + tbTotal.Text + " ,anticipo=" + tbAnticipo.Text + " , restante=" + tbRestante.Text + " , actualizacion='" + DateTime.Now.ToShortDateString() + "' where estatus=1 and idReserva=" + tbId.Text);
 									conexion.ejecutar("insert into abonos values(" + tbId.Text + "," + tbAbono.Text + ",'" + DateTime.Now.ToShortDateString() + "')");
@@ -203,9 +187,6 @@ namespace Sistema_Reservaciones
 									double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
 									tbRestante.Text = Convert.ToString(restante);
 
-									//restante = total - anticipo;
-									//string a = Convert.ToString(anticipo);
-									//string r = Convert.ToString(restante);
 
 									conexion.ejecutar("update Reserva set total=" + tbTotal.Text + " ,anticipo=" + tbAnticipo.Text + " , restante=" + tbRestante.Text + " , actualizacion='" + DateTime.Now.ToShortDateString() + "' where estatus=1 and idReserva=" + tbId.Text);
 									if (tbRestante.Text.Equals("0")) {
@@ -249,8 +230,6 @@ namespace Sistema_Reservaciones
                 " \nNo existe manera de revertir esta accion una vez eliminada", "Atencion", MessageBoxButtons.YesNo);
                 if (yus == DialogResult.Yes && tbId.TextLength > 0)
                 {
-					//MessageBox.Show("Hay que devolver al cliente su anticipo y abonos" +
-					//  "\nEs un total de: " + tbAnticipo.Text,"Atencion");
 					MessageBox.Show("Reservacion eliminada con exito","Atencion");
                     conexion.ejecutar("update Reserva set estatus=0 where idReserva=" + tbId.Text);
                     condicionesLimpias();
@@ -286,41 +265,14 @@ namespace Sistema_Reservaciones
             tbDeposito.Text = "";
             tbRestante.Text = "";
             tbAnticipo.Text = "";
-            //rbSi.Checked = false;
-            //rbNo.Checked = true;
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        //private void rbNo_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (rbNo.Checked==true && tbId.TextLength>0) {
-        //        double nuevoTotal = Convert.ToDouble(tbTotal.Text)-Convert.ToDouble(tbDeposito.Text);
-        //        tbTotal.Text = Convert.ToString(nuevoTotal);
-        //        double nuevoRestante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
-        //        tbRestante.Text = Convert.ToString(nuevoRestante);
-        //    }
-        //}
-
-        //private void rbSi_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (rbSi.Checked == true && tbId.TextLength > 0)
-        //    {
-        //        double nuevoTotal = Convert.ToDouble(tbTotal.Text) + Convert.ToDouble(tbDeposito.Text);
-        //        tbTotal.Text = Convert.ToString(nuevoTotal);
-        //        double nuevoRestante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
-        //        tbRestante.Text = Convert.ToString(nuevoRestante);
-        //    }
-        //}
-
         private void tbMulta_KeyPress(object sender, KeyPressEventArgs e)
         {
-			//if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-			//{
-			//	e.Handled = true;
-			//}
 			try
 			{
 				if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
@@ -335,7 +287,6 @@ namespace Sistema_Reservaciones
 						 " \nReservacion con folio " + tbId.Text, "Atencion", MessageBoxButtons.YesNo);
 						if (yus == DialogResult.Yes)
 						{
-							//MessageBox.Show(tbMulta.Text);
 							double nuevoTotal = Convert.ToDouble(tbTotal.Text) + Convert.ToDouble(tbMulta.Text);
 							tbTotal.Text = Convert.ToString(nuevoTotal);
 							double nuevoRestante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
@@ -354,10 +305,6 @@ namespace Sistema_Reservaciones
 					{
 						MessageBox.Show("Error \nVerifque que esta seleccionada una reservacion \nVerifique que puso una multa valida", "Atencion");
 					}
-				}
-				else
-				{
-					//validar.numerosEnteros(e);
 				}
 			}
 			catch
@@ -378,7 +325,6 @@ namespace Sistema_Reservaciones
                          " \nReservacion con folio " + tbId.Text + "\nDebe recibir un pago de " + tbRestante.Text, "Atencion", MessageBoxButtons.YesNo);
                     if (yus == DialogResult.Yes)
                     {
-						//double rest = Convert.ToDouble(tbRestante.Text) - Convert.ToDouble(tbDeposito.Text);
 						string entrada2 = conexion.getUnDato("select Sum(convert(numeric(10, 2), (Cantidad))) AS 'Ganancia' from entradaDepositos where idReserva ="+tbId.Text);
 						if (entrada2.Equals(""))
 						{
@@ -436,8 +382,6 @@ namespace Sistema_Reservaciones
             if (tbId.TextLength > 0)
             {
                 string idediytar = tbId.Text;
-                //ActiveForm.Hide();
-                //this.Close();
                 EditarReservacion er = new EditarReservacion(idediytar);
                 er.Show();
                 this.Close();
@@ -468,7 +412,6 @@ namespace Sistema_Reservaciones
               , "Atencion", MessageBoxButtons.YesNo);
             if (yus == DialogResult.Yes)
             {
-                //this.Close();
                 menu_inicio menu = new menu_inicio();
                 if (Program.NombreUsuario == "admin")
                 {
@@ -588,7 +531,6 @@ namespace Sistema_Reservaciones
 			if (stockSolicitado > productoStock)
 			{
 				double sobrante = productoStock - stockEnUso;
-				//MessageBox.Show("No se cuenta con el stock suficiente \nStock existente disponible = " + Convert.ToString(sobrante), "Atencion");
 				return false;
 			}
 			else

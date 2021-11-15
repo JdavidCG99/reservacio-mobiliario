@@ -75,7 +75,6 @@ namespace Sistema_Reservaciones
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            //this.Close();
             menu_inicio menu = new menu_inicio();
             if (Program.NombreUsuario == "admin")
             {
@@ -102,7 +101,6 @@ namespace Sistema_Reservaciones
 			   , "Atencion", MessageBoxButtons.YesNo);
 			if (yus == DialogResult.Yes)
 			{
-				//MessageBox.Show(resrevacion,"Atencion");
 				string query = "update Reserva set salio = 'Si' where idReserva=" + resrevacion;
 				bdd.ejecutar(query);
 				string query2 = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +

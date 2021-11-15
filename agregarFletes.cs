@@ -24,7 +24,7 @@ namespace Sistema_Reservaciones
             query = "Select Max(idFlete) As 'dato' From Flete ";
             idFlete = conexion.dato(query);
             int nextID;
-            //int nextID = Convert.ToInt32(idFlete[0]) + 1;
+
             if (idFlete[0] != "")
             {
                 nextID = Convert.ToInt32(idFlete[0]) + 1;
@@ -34,11 +34,7 @@ namespace Sistema_Reservaciones
                 nextID = 1;
             }
             txtID.Text = Convert.ToString(nextID);
-
-            //idProducto = conexion.dato(query);
-            //int nextID;
            
-
         }
 
         private void ntmGuardar_Click(object sender, EventArgs e)
@@ -55,8 +51,6 @@ namespace Sistema_Reservaciones
 
                 MessageBox.Show("Flete Capturado Exitosamente!", "Guardar");
 
-                //ActiveForm.Close();
-
                 catalogoFletes catalogoFletes = new catalogoFletes();
                 catalogoFletes.Show();
                 this.Close();
@@ -69,8 +63,6 @@ namespace Sistema_Reservaciones
 
             if (result == DialogResult.OK)
             {
-                //ActiveForm.Close();
-
                 catalogoFletes catalogoFletes = new catalogoFletes();
                 catalogoFletes.Show();
                 this.Close();

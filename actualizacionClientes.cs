@@ -26,8 +26,6 @@ namespace Sistema_Reservaciones
 
             if (result == DialogResult.OK)
             {
-                //ActiveForm.Close();
-
                 catalogoClientes catalogoClientes = new catalogoClientes();
                 catalogoClientes.Show();
                 this.Close();
@@ -42,8 +40,6 @@ namespace Sistema_Reservaciones
             conexion.Alta_baja_cambio(query);
 
             MessageBox.Show("Cliente Actualizado Exitosamente!", "Guardar");
-
-            //ActiveForm.Close();
 
             catalogoClientes catalogoClientes = new catalogoClientes();
             catalogoClientes.Show();
@@ -62,7 +58,6 @@ namespace Sistema_Reservaciones
 
                 MessageBox.Show("Cliente Eliminado Exitosamente", "Eliminar");
 
-                //ActiveForm.Close();
                 catalogoClientes catalogoClientes = new catalogoClientes();
                 catalogoClientes.Show();
                 this.Close();

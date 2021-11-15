@@ -70,33 +70,9 @@ namespace Sistema_Reservaciones
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-			/*if (txtUsuario.Text == "admin" & txtContra.Text == "lolis123")
-            {
-                ActiveForm.Hide();
-                menu_inicio menu = new menu_inicio();
-                menu.Show();
-
-                menu.toolStripMenuItem2.Visible = true;
-                Program.NombreUsuario = "admin";
-            }
-            else if (txtUsuario.Text == "usuario" & txtContra.Text == "12345")
-            {
-                ActiveForm.Hide();
-                menu_inicio menu = new menu_inicio();
-                menu.Show();
-
-                Program.NombreUsuario = "usuario";
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos", "Atencion");
-            }*/
-
 			string query = "select count(*) from users where name = '"+txtUsuario.Text+"' and contra = '"+txtContra.Text+"'";
 
 			string res = y.getUnDato(query);
-
-			//MessageBox.Show(res);
 
 			if (Convert.ToInt32(res) > 0)
 			{

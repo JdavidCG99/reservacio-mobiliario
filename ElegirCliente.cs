@@ -85,8 +85,6 @@ namespace Sistema_Reservaciones
 
 		private void gvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
-			//tbNombre.Text = "";
-			//tbId.Text = "";
 			
 		}
 

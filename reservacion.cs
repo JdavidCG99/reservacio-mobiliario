@@ -14,7 +14,6 @@ namespace Sistema_Reservaciones
 {
     public partial class reservacion : Form
     {
-        //Conexion conexion = new Conexion();
         Conexion2 conexion2 = new Conexion2();
         Validaciones validar = new Validaciones();
         double totalInicio;
@@ -42,15 +41,6 @@ namespace Sistema_Reservaciones
             string query = "select idProductos as ID,nombre, descripcion, precioVenta from Productos where estatus=1";
             gvProductos.DataSource = conexion2.llenarVistas(query);
 			cbUbicacion.SelectedIndex = 0;
-
-			//conexion2.select(textBox1, "select CONCAT(idCliente,' ',nombre,' ',apellidoP,' ',apellidoM) from Cliente where estatus=1 order by nombre");
-			//textBox1.SelectedIndex = 0;
-
-			//string texto = textBox1.Text;
-			//int posicion = texto.IndexOf(" ");
-			//String substring = textBox1.Text.Substring(0, posicion);
-			////txtTextoBuscado.Text = substring
-			//int a = Convert.ToInt32(substring);
 			tbCliente.Text = this.NombreCliente;
 			string[] info = conexion2.telefono("select telefono from Cliente where idCliente=" + this.idCliente);
 			tbCelular.Text = info[0];
@@ -89,56 +79,16 @@ namespace Sistema_Reservaciones
 				tbDescripcion.Text = "";
 
 			}
-			//cbCliente.AutoCompleteCustomSource = CargarDatos();
-			//cbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
-			//cbCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
-			//cbCliente.AutoCompleteCustomSource = Masajes.
-			// Cargo los datos que tendra el combobox
-			//cbCliente.DataSource = AutoCompleClass.Datos();
-			//cbCliente.DisplayMember = "cliente";
-			////cbCliente.ValueMember = "cliente";
-
-			//// cargo la lista de items para el autocomplete dle combobox
-			//cbCliente.AutoCompleteCustomSource = AutoCompleClass.Autocomplete();
-			//cbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
-			//cbCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-			//comboBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
-			//comboBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
-
-			//cbClientes.DataSource(bdd.llenarVistas("select nombre from Cliente"));
-			//diocliccotizar = false;
-			//MessageBox.Show(dtfev.Text);
-			//tbDescripcion.Text = "";
+			btnVerificar.BackColor = Color.White;
 		}
 		private void cbCliente_KeyPress(object sender, KeyPressEventArgs e)
 		{
-			//if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && e.KeyChar != 127)
-			//{
-			//	if (cbCliente.Text.Equals(""))
-			//	{
-			//		conexion2.select(cbCliente, "select CONCAT(idCliente,' ',nombre,' ',apellidoP,' ',apellidoM) from Cliente where estatus=1");
-			//		cbCliente.SelectedIndex = 0;
-			//	}
-			//	else
-			//	{
-			//		conexion2.select(cbCliente, "select CONCAT(idCliente,' ',nombre,' ',apellidoP,' ',apellidoM) from Cliente where estatus=1 and nombre like %"+cbCliente.Text+"%");
-			//		//cbCliente.SelectedIndex = 0;
-			//	}
-			//}
 			
 		}
 		private void cbCliente_TextChanged(object sender, EventArgs e)
 		{
 			
 		}
-		//private AutoCompleteStringCollection CargarDatos()
-		//{
-		//	AutoCompleteStringCollection datos = new AutoCompleteStringCollection();
-		//	datos = conexion2.llenarVistas("select CONCAT(idCliente,' ',nombre,' ',apellidoP,' ',apellidoM) from Cliente where estatus=1");
-		//	return datos;
-		//}
 		private void dtFechaRegreso_ValueChanged(object sender, EventArgs e)
         {
             if (dtFechaRegreso.Value < dtFechaEntrega.Value.AddDays(-1))
@@ -174,11 +124,9 @@ namespace Sistema_Reservaciones
 
         private void cbUbicacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string[] info = conexion.dato("select Precio from Flete where ubicacion='" + cbUbicacion.Text + "'");
-            //tbFlete.Text = info[0];
-            //tbFlete.Text = Convert.ToString(conexion.getUnDato("select Precio from Flete where ubicacion='" + cbUbicacion.Text + "'"));
             tbFlete.Text = conexion2.getUnDato("select Precio from Flete where ubicacion='" + cbUbicacion.Text + "'");
-        }
+			btnVerificar.BackColor = Color.Yellow;
+		}
 
         private void cbCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -215,48 +163,6 @@ namespace Sistema_Reservaciones
 
         private void cbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-			//string texto = textBox1.Text;
-			//int posicion = texto.IndexOf(" ");
-			//String substring = textBox1.Text.Substring(0, posicion);
-			////txtTextoBuscado.Text = substring
-			//int a = Convert.ToInt32(substring);
-			//int a = cbCliente.SelectedIndex + 1;
-			//NombreCliente = cbCliente.Text;
-			//MessageBox.Show("Id seleccionada: " + Convert.ToString(a));
-
-           			//if (!textBox1.Text.Equals("1 Cliente General "))
-   //         {
-   //             lblBonificacion.Visible = true;
-   //             rbBonificacion.Visible = true;
-   //             rbNoBonificaion.Visible = true;
-   //             lblNombreDescuento.Text = "Descuento:";
-   //             tbNombreCliente.Width = 40;
-   //             tbNombreCliente.Text = "0";
-   //             tbNombreCliente.Enabled = false;
-   //             lblPorcentaje.Visible = true;
-   //             string[] info = conexion2.telefono("select telefono from Cliente where idCliente=" + Convert.ToString(a));
-   //             tbCelular.Text = info[0];
-   //             tbCelular.ReadOnly = true;
-
-			//	string info2 = conexion2.getUnDato("select direcion from Cliente where idCliente=" + Convert.ToString(a));
-			//	tbDescripcion.Text = info2;
-			//}
-   //         else
-   //         {
-   //             lblBonificacion.Visible = false;
-   //             rbBonificacion.Visible = false;
-   //             rbNoBonificaion.Visible = false;
-   //             lblNombreDescuento.Text = "Nombre:";
-   //             tbNombreCliente.Width = 190;
-   //             tbNombreCliente.Enabled = true;
-   //             rbNoBonificaion.Checked = true;
-   //             tbNombreCliente.Text = "";
-   //             lblPorcentaje.Visible = false;
-   //             tbCelular.Text = "";
-   //             tbCelular.ReadOnly = false;
-			//	tbDescripcion.Text = "";
-
-			//} limpiarCotizacion();
         }
 
         private Boolean validarPedidos()
@@ -280,8 +186,6 @@ namespace Sistema_Reservaciones
         }
         private void gvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if () {
-            //}
             try
             {
                 string idActual = gvProductos.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -305,7 +209,6 @@ namespace Sistema_Reservaciones
 										 , "Atencion", MessageBoxButtons.YesNo);
 										if (con == DialogResult.Yes)
 										{
-
 											switch (datos[0])
 											{
 
@@ -469,12 +372,8 @@ namespace Sistema_Reservaciones
 											gvPedido.Rows[yus].Cells[3].Value = datos[3];
 											gvPedido.Rows[yus].Cells[4].Value = ib;
 											string precios = datos[3];
-											//double preciod = Convert.ToDouble(precios, CultureInfo.CreateSpecificCulture("en-Us"));
-											//double preciod = Convert.ToDouble(precios);
-											//MessageBox.Show(Convert.ToString(precios + " " + Convert.ToString(preciod) ));
 											double total = Convert.ToDouble(ib) * Convert.ToDouble(datos[3]);
 											gvPedido.Rows[yus].Cells[5].Value = Convert.ToString(total);
-											//gvPedido.Rows[yus].Cells[5].Value = "124.25";
 										}
 									}
 									else {
@@ -485,12 +384,8 @@ namespace Sistema_Reservaciones
 										gvPedido.Rows[yus].Cells[3].Value = datos[3];
 										gvPedido.Rows[yus].Cells[4].Value = ib;
 										string precios = datos[3];
-										//double preciod = Convert.ToDouble(precios, CultureInfo.CreateSpecificCulture("en-Us"));
-										//double preciod = Convert.ToDouble(precios);
-										//MessageBox.Show(Convert.ToString(precios + " " + Convert.ToString(preciod) ));
 										double total = Convert.ToDouble(ib) * Convert.ToDouble(datos[3]);
 										gvPedido.Rows[yus].Cells[5].Value = Convert.ToString(total);
-										//gvPedido.Rows[yus].Cells[5].Value = "124.25";
 									}
 
 								}
@@ -517,19 +412,6 @@ namespace Sistema_Reservaciones
 
         }
         private Boolean siSePuedeAgg(string idProducto) {
-            //int num_requeridos = gvPedido.Rows.Count - 1;
-            //Boolean res = true;
-            //int id = 0;
-            //for (int a = 0; a < num_requeridos; a++)
-            //{
-            //    int renglon = a;
-            //    if (idProducto.Equals(gvPedido.Rows[renglon].Cells[id].Value.ToString())) {
-            //        res = false;
-            //        break;
-            //    }
-
-
-            //}
             return true;
         }
         private Boolean estaDisponibleProducto(string idProducto, string cantidad) {
@@ -539,7 +421,6 @@ namespace Sistema_Reservaciones
             string[] reserCercanas = reservaciones.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
             double productoStock = Convert.ToDouble(conexion2.getUnDato("select stock from Productos where idProductos =" + idProducto + " and estatus=1"));
 
-			//MessageBox.Show(Convert.ToString(reserCercanas.Length));
             double stockEnUso = 0;
             for (int al = 0; al < reserCercanas.Length; al++) {
 
@@ -555,31 +436,8 @@ namespace Sistema_Reservaciones
 
                         if (detalleReservacionId[l].Equals(idProducto)) {
 
-							//if (validarStock(productoStock, Convert.ToInt32(detalleReservacionCant[l]) + Convert.ToInt32(cantidad)))
-							//{
-							//	return true;
-							//}
-							//else
-							//{
-								//MessageBox.Show(reserCercanas[al], "Atencion");
-							//	return false;
-							//}
 							stockEnUso = stockEnUso + Convert.ToDouble(detalleReservacionCant[l]);
                         }
-						//else
-						//{
-						//	if (validarStock(productoStock, Convert.ToInt32(cantidad)))
-						//	{
-						//		//stockEnUso = 0;
-						//		return true;
-						//	}
-						//	else
-						//	{
-						//		//stockEnUso = 0;
-						//		MessageBox.Show("No se cuenta con el stock suficiente", "Atencion");
-						//		return false;
-						//	}
-						//}
 					}
                 }
                 else {
@@ -676,18 +534,13 @@ namespace Sistema_Reservaciones
         {
             double total = 0;
             int num_requeridos = gvPedido.Rows.Count - 1;
-            //Boolean yus = true;
             for (int a = 0; a < num_requeridos; a++)
             {
                 int renglon = a;
                 int subtotal = 5;
-                //string cantidadNecesario = gvPedido.Rows[renglon].Cells[cantidad].Value.ToString();
+
                 string totalProducto = gvPedido.Rows[renglon].Cells[subtotal].Value.ToString();
                 total = total + Convert.ToDouble(totalProducto);
-                //if (cantidadNecesario.Equals("") || total.Equals(""))
-                //{
-                //    yus = false;
-                //}
             }
             return total;
         }
@@ -707,9 +560,9 @@ namespace Sistema_Reservaciones
 					bool fail = false;
 					double flete = Convert.ToInt32(tbFlete.Text);
 					double totalProductos = costoProductos();
-					//tbSubTotal.Text = Convert.ToString(flete + totalProductos);
+
 					tbSubTotal.Text = Convert.ToString(totalProductos);
-					//totalInicio=to
+
 					double descuento = 0;
 					if (!tbCliente.Text.Equals("Cliente General "))
 					{
@@ -731,7 +584,6 @@ namespace Sistema_Reservaciones
 						double toyus = Convert.ToDouble(tbTotal.Text) + flete;
 						if (anticipo <= toyus)
 						{
-							//tbDescuento.Text = Convert.ToString(descuentoActual + aDescontar);
 							double total = Convert.ToDouble(tbTotal.Text) - anticipo;
 							tbRestante.Text = Convert.ToString(total);
 						}
@@ -745,12 +597,9 @@ namespace Sistema_Reservaciones
 					{
 						double total = Convert.ToDouble(tbSubTotal.Text) - Convert.ToDouble(tbDescuento.Text) - Convert.ToDouble(tbAnticipo.Text);
 						tbRestante.Text = Convert.ToString(total);
-						//tbRestante.Text = tbTotal.Text;
 					}
 					if (tbTotal.TextLength > 0)
 					{
-						//if (!(descuentoActual != 0))
-						//{
 							if (descuentoActual <= Convert.ToDouble(tbSubTotal.Text))
 							{
 								if (!tbCliente.Text.Equals("Cliente General "))
@@ -775,28 +624,12 @@ namespace Sistema_Reservaciones
 							MessageBox.Show("El descuento no puede ser mayor al total de la reservacion al total de productos", "Atencion");
 							tbDescuento.Text = "0";
 							fail = true;
-							//if (!tbCliente.Text.Equals("Cliente General "))
-							//{
-
-								//tbDescuento.Text = Convert.ToString(descuentoActual + aDescontar);
 							double total = Convert.ToDouble(tbSubTotal.Text) + flete + Convert.ToDouble(tbDeposito.Text);
 							tbTotal.Text = Convert.ToString(total);
 
 							double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
 							tbRestante.Text = Convert.ToString(restante);
-							//}
-							//else
-							//{
-
-							//	///tbDescuento.Text = Convert.ToString(descuentoActual);
-							//	double total = Convert.ToDouble(tbSubTotal.Text) + flete;
-							//	tbTotal.Text = Convert.ToString(total);
-
-							//}
 						}
-						//}
-
-
 					}
 					else
 					{
@@ -808,8 +641,6 @@ namespace Sistema_Reservaciones
 						tbTotal.Text = Convert.ToString(total);
 					}
 					if (!fail) {
-
-						//MessageBox.Show(Convert.ToString(anticipo));
 						double deposito = 0;
 						if (tbDeposito.TextLength > 0)
 						{
@@ -817,19 +648,11 @@ namespace Sistema_Reservaciones
 						}
 						if (tbTotal.TextLength > 0)
 						{
-							//if (deposito < Convert.ToDouble(tbTotal.Text))
-							//{
-							//tbDescuento.Text = Convert.ToString(descuentoActual + aDescontar);
 							double total = Convert.ToDouble(tbTotal.Text) + deposito;
 							tbTotal.Text = Convert.ToString(total);
-							//tbRestante.Text = Convert.ToString(total);
+
 							double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
 							tbRestante.Text = Convert.ToString(restante);
-							//}
-							//else
-							//{
-							//    MessageBox.Show("El deposito no puede ser mayor al total de la reservacion", "Atencion");
-							//}
 						}
 						else
 						{
@@ -837,7 +660,6 @@ namespace Sistema_Reservaciones
 							tbTotal.Text = Convert.ToString(total);
 							double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
 							tbRestante.Text = Convert.ToString(restante);
-							//tbRestante.Text = Convert.ToString(total);
 						}
 					}
 				}
@@ -856,8 +678,9 @@ namespace Sistema_Reservaciones
         {
             Cotizar();
 			btnImp.Enabled = true;
-           
-        }
+			btnVerificar.BackColor = Color.White;
+
+		}
         private void btnReservar_Click(object sender, EventArgs e)
         {
             DialogResult yus = MessageBox.Show("Segura que quieres agendar esta reservacion" 
@@ -866,21 +689,10 @@ namespace Sistema_Reservaciones
             {
                 try
                 {
-     //               string nombreCliente = tbNombreCliente.Text;
-					////int id = cbCliente.SelectedIndex + 1;
-					////int id = Convert.ToInt32(cbCliente.Text.Substring(0, 1));
-					//string texto = textBox1.Text;
-					//int posicion = texto.IndexOf(" ");
-					//String substring = textBox1.Text.Substring(0, posicion);
-					////txtTextoBuscado.Text = substring
-					//int id = Convert.ToInt32(substring);
-
 					int idflete = cbUbicacion.SelectedIndex + 1;
 
 					if (tbCliente.Text.Equals("Cliente General "))
 					{
-						//string[] info = conexion.nombre("select CONCAT(nombre,' ',apellidoP,' ',apellidoM) as name from Cliente where idCliente=1" + Convert.ToString(id));
-						//nombreCliente = info[0];
 						this.NombreCliente = tbNombreCliente.Text;
 					}
 
@@ -913,11 +725,9 @@ namespace Sistema_Reservaciones
                         conexion2.ejecutar(q);
                     }
                     MessageBox.Show("Reservacion echa con exito", "Nota");
-                    //reservacion l = new reservacion();
-                    //l.Show();
+
                     imprimir imp = new imprimir(tbFolio.Text);
                     imp.Show();
-                    //Application.Restart();
                     limpiarReservacion();
                 }
                 catch {
@@ -927,16 +737,11 @@ namespace Sistema_Reservaciones
             }
         }
         public void limpiarReservacion() {
-            //textBox1.SelectedIndex = 0;
             cbUbicacion.SelectedIndex = 0;
             limpiarCotizacion();
             rbBonificacion.Checked = false;
             rbNoBonificaion.Checked = true;
             gvPedido.Rows.Clear();
-            //if (textBox1.Text.Equals("Cliente General "))
-            //{
-            //    tbNombreCliente.Text = "";
-            //}
             tbFolio.Text = Convert.ToString(conexion2.getId("select max(idReserva) from Reserva"));
         }
         private void btnQuitar_Click(object sender, EventArgs e)
@@ -944,19 +749,7 @@ namespace Sistema_Reservaciones
             DialogResult yus = MessageBox.Show("Segura que elimnar este producto de la reservacion"
                , "Atencion", MessageBoxButtons.YesNo);
             if (yus == DialogResult.Yes) {
-                //double subtotalactual = Convert.ToDouble(tbSubTotal.Text);
-                //if (subtotalactual > totalInicio)
-                //{
-                //    double costo = Convert.ToDouble(gvPedido.Rows[gvPedido.CurrentRow.Index].Cells[5].Value.ToString());
-                //    double subActual = Convert.ToDouble(tbSubTotal.Text)-costo;
-                //    tbSubTotal.Text = Convert.ToString(subActual);
-                //   Cotizar();
-                //Cotizar();
-               // }
-                //gvNewProducts.Rows.Remove(gvNewProducts.CurrentRow);
                 gvPedido.Rows.Remove(gvPedido.CurrentRow);
-                //btnActualizar.Enabled = true;
-                //btnActualizar.BackColor = System.Drawing.Color.Yellow;
             }
                 
         }
@@ -1001,7 +794,9 @@ namespace Sistema_Reservaciones
             {
                 e.Handled = true;
             }
-        }
+			//Cotizar();
+			btnVerificar.BackColor = Color.Yellow;
+		}
 
         private void tbDescuento_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1020,12 +815,14 @@ namespace Sistema_Reservaciones
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             validar.numerosEnteros(e);
-        }
+			btnVerificar.BackColor = Color.Yellow;
+		}
 
         private void tbTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             validar.numerosEnteros(e);
-        }
+			btnVerificar.BackColor = Color.Yellow;
+		}
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
@@ -1057,8 +854,8 @@ namespace Sistema_Reservaciones
 
         private void tbDescuento_TextChanged(object sender, EventArgs e)
         {
-
-        }
+			btnVerificar.BackColor = Color.Yellow;
+		}
 
         private void btnVerificar_MouseHover(object sender, EventArgs e)
         {
@@ -1146,12 +943,6 @@ namespace Sistema_Reservaciones
 					double nuevRestante = Convert.ToDouble(tbRestante.Text) + iva;
 					tbRestante.Text = Convert.ToString(nuevRestante);
 				}
-				//double iva = Convert.ToDouble(tbSubTotal.Text) / 100 * 16;
-				//tbiva.Text = Convert.ToString(iva);
-				//double nuevTotal = Convert.ToDouble(tbiva.Text) + Convert.ToDouble(tbTotal.Text);
-				//tbTotal.Text = Convert.ToString(nuevTotal);
-				//double nuevrestante = Convert.ToDouble(tbRestante.Text) + Convert.ToDouble(tbiva.Text);
-				//tbRestante.Text = Convert.ToString(nuevrestante);
 			}
 			catch {
 				MessageBox.Show("Los calculos del iva se hacen al final","Atencion");
@@ -1162,12 +953,6 @@ namespace Sistema_Reservaciones
 		private void rbNo_Click(object sender, EventArgs e)
 		{
 			try {
-				//double nuevTotal = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbiva.Text);
-				//tbTotal.Text = Convert.ToString(nuevTotal);
-				//double nuevrestante = Convert.ToDouble(tbRestante.Text) - Convert.ToDouble(tbiva.Text);
-				//tbRestante.Text = Convert.ToString(nuevrestante);
-				//tbiva.Text = "0";
-
 				double nuevTotal = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbiva.Text);
 				tbTotal.Text = Convert.ToString(nuevTotal);
 				double nuevrestante = Convert.ToDouble(tbRestante.Text) - Convert.ToDouble(tbiva.Text);
@@ -1196,15 +981,8 @@ namespace Sistema_Reservaciones
 				nombres[y] = Convert.ToString(gvPedido.Rows[y].Cells[1].Value);
 				precios[y] = Convert.ToString(gvPedido.Rows[y].Cells[3].Value);
 				totales[y] = Convert.ToString(gvPedido.Rows[y].Cells[5].Value);
-				//MessageBox.Show(Convert.ToString(gvPedido.Rows[y].Cells[0].Value));
 			}
-			//DataTable con;
-			//DataTable dt = new DataTable();
-			//dt = (DataTable)gvPedido.DataSource;
 
-			//string[] idsp = gvPedido.Rows.OfType<DataRow>().Select(k => k[1].ToString()).ToArray();
-
-			//MessageBox.Show(Convert.ToString(idsp.Length));
 			imprimir yuslin = new imprimir(tbFolio.Text, dtFechaEntrega.Text,dtFechaEntrega.Text,dtFechaRegreso.Text,tbNombreCliente.Text,
 				tbCelular.Text,cbUbicacion.Text,tbFlete.Text,tbDescripcion.Text,tbTotal.Text,tbAnticipo.Text,tbRestante.Text,tbDeposito.Text,tbDescuento.Text,
 				tbiva.Text,idsp,cantidades,nombres,precios,totales);

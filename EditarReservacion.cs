@@ -30,7 +30,7 @@ namespace Sistema_Reservaciones
         double totalInicioprogram;
         double subtotal = 0;
 		double fleteIncial;
-        //string idFlete;
+
         public EditarReservacion(String id)
         {
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace Sistema_Reservaciones
 			tbiva.Text = Convert.ToString(conexion.getUnDato("select iva from Reserva where estatus=1 and idReserva=" + id));
 			tbCelular.Text = Convert.ToString(conexion.getUnDato("select telefono from Reserva where estatus=1 and idReserva=" + id));
 			string idFlete = Convert.ToString(conexion.getUnDato("select idFlete from Reserva where estatus=1 and idReserva=" + id));
-			//MessageBox.Show(idFlete);
+
 			tbFleteCosto.Text = Convert.ToString(conexion.getUnDato("select Precio from Flete where idFlete=" + idFlete));
 			if (Convert.ToDouble(tbiva.Text) > 0)
 			{
@@ -75,10 +75,11 @@ namespace Sistema_Reservaciones
 				rbNo.Checked = true;
 				rbivasi.Checked = false;
 			}
-			subtotal = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(datos[10]) - Convert.ToDouble(tbiva.Text);
-            totalInicioprogram = subtotal;
+			//subtotal = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbDeposito.Text) - Convert.ToDouble(datos[10]) - Convert.ToDouble(tbiva.Text);
+			subtotal = Convert.ToDouble(tbTotal.Text) + Convert.ToDouble(tbDescuento.Text) - Convert.ToDouble(tbDeposito.Text) - Convert.ToDouble(tbFleteCosto.Text) - Convert.ToDouble(tbiva.Text);
+			totalInicioprogram = subtotal;
             tbSubTotal.Text= Convert.ToString(subtotal);
-            //conexion.select(cbCliente, "select CONCAT(nombre,' ',apellidoP,' ',apellidoM) from Cliente where idCliente="+nombre);
+
             conexion.select(cbUbicacion, "select CONCAT(idFlete,' ',ubicacion) from Flete");
             conexion.select(cbCategorias, "select nombre from Categorias");
             string query = "select idProductos as ID,nombre, descripcion, precioVenta from Productos where estatus=1";
@@ -186,7 +187,6 @@ namespace Sistema_Reservaciones
             datos = conexion.ObtenerInformacionAddProduct("select idProductos,nombre, descripcion, precioVenta from Productos where idProductos=" + idActual + " and estatus=1");
             if (datos != null)
             {
-                //if (siSePuedeAgg(idActual) && siSePuedeAgg2(idActual))
                 if (siSePuedeAgg2(idActual))
                 {
                     ib = Interaction.InputBox("Ingrese la cantidad de " + datos[0] + " " + datos[1]);
@@ -563,16 +563,12 @@ namespace Sistema_Reservaciones
             {
                 if (validarDatos())
                 {
-                    //double flete = Convert.ToInt32(tbFlete.Text);
                     double totalProductos = costoProductos();
                     tbSubTotal.Text = Convert.ToString(totalProductos + subtotal);
 					bool fail = false;
-					//totalInicio=to
+
 					double descuento = 0;
-                    //if (!cbCliente.Text.Equals("Cliente General "))
-                    //{
-                    //    descuento = Convert.ToDouble(tbNombreCliente.Text);
-                    //}
+
                     double aDescontar = Convert.ToDouble(tbSubTotal.Text) / 100 * descuento;
                     double descuentoActual = 0;
                     if (tbDescuento.TextLength > 0)
@@ -586,8 +582,7 @@ namespace Sistema_Reservaciones
                         {
                             if (!cbCliente.Text.Equals("Cliente General "))
                             {
-                                //tbDescuento.Text = Convert.ToString(descuentoActual + aDescontar);
-                                double total = Convert.ToDouble(tbSubTotal.Text) - Convert.ToDouble(tbDescuento.Text);
+                                double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
                                 tbTotal.Text = Convert.ToString(total);
                             }
                             else
@@ -632,7 +627,6 @@ namespace Sistema_Reservaciones
 						{
 							if (anticipo <= Convert.ToDouble(tbTotal.Text))
 							{
-								//tbDescuento.Text = Convert.ToString(descuentoActual + aDescontar);
 								double total = Convert.ToDouble(tbTotal.Text) - anticipo;
 								tbRestante.Text = Convert.ToString(total);
 							}
@@ -645,9 +639,7 @@ namespace Sistema_Reservaciones
 						{
 							double total = Convert.ToDouble(tbSubTotal.Text) - Convert.ToDouble(tbDescuento.Text) - Convert.ToDouble(tbAnticipo.Text);
 							tbRestante.Text = Convert.ToString(total);
-							//tbRestante.Text = tbTotal.Text;
 						}
-						//MessageBox.Show(Convert.ToString(anticipo));
 						double deposito = 0;
 						if (tbDeposito.TextLength > 0)
 						{
@@ -708,9 +700,7 @@ namespace Sistema_Reservaciones
 
 							double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
 							tbRestante.Text = Convert.ToString(restante);
-							//tbRestante.Text = Convert.ToString(total);
 						}
-						//
 					}
 
                 }
@@ -772,7 +762,6 @@ namespace Sistema_Reservaciones
                     verReservaciones l = new verReservaciones();
                     l.Show();
                     this.Close();
-                    //Application.Restart();
                 }
                 catch
                 {

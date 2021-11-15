@@ -55,8 +55,6 @@ namespace Sistema_Reservaciones
 
                 MessageBox.Show("Producto Capturado Exitosamente!", "Guardar");
 
-                //ActiveForm.Close();
-
                 Productos catalogoProductos = new Productos();
                 catalogoProductos.Show();
                 this.Close();
@@ -68,7 +66,6 @@ namespace Sistema_Reservaciones
             DialogResult result = MessageBox.Show("Si decide salir los cambios no seran guardados!", "Regresar", MessageBoxButtons.OKCancel);
 
             if(result == DialogResult.OK) { 
-                ///this.Close();
 
                 Productos catalogoProductos = new Productos();
                 catalogoProductos.Show();

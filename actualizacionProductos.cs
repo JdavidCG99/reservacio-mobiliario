@@ -27,8 +27,6 @@ namespace Sistema_Reservaciones
 
             if (result == DialogResult.OK)
             {
-                //ActiveForm.Close();
-
                 Productos catalogoProductos = new Productos();
                 catalogoProductos.Show();
                 this.Close();
@@ -46,8 +44,6 @@ namespace Sistema_Reservaciones
             conexion.Alta_baja_cambio(query);
 
             MessageBox.Show("Producto Actualizado Exitosamente!", "Guardar");
-
-            //ActiveForm.Close();
 
             Productos catalogoProductos = new Productos();
             catalogoProductos.Show();
@@ -81,7 +77,6 @@ namespace Sistema_Reservaciones
 
                 MessageBox.Show("Producto Eliminado Exitosamente", "Eliminar");
 
-                //ActiveForm.Close();
                 Productos catalogProductos = new Productos();
                 catalogProductos.Show();
                 this.Close();

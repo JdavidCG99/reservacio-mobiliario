@@ -69,7 +69,6 @@ namespace Sistema_Reservaciones
 				if (d.Rows.Count > 0)
 				{
 					tbId.Text = tbFolio.Text;
-					//string[] infos = conexion2.getUnDato("select nombre from Reserva where idReserva=" + tbFolio.Text);
 					tbCliente.Text = conexion2.getUnDato("select nombre from Reserva where idReserva=" + tbFolio.Text);
 					string[] info = conexion2.telefono("select telefono from Reserva where idReserva=" + tbFolio.Text);
 					tbCelular.Text = info[0];

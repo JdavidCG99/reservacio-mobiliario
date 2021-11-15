@@ -43,8 +43,6 @@ namespace Sistema_Reservaciones
                 entrada2 = "0";
             }
             entrada = Convert.ToDouble(entrada2);
-            //txtLuz.Text = luz2;
-            //entrada = Convert.ToDouble(con.getUnDato("select Sum(convert(numeric(10, 2), (Cantidad))) AS 'Ganancia' from abonos where fecha='" + DateTime.Now.ToShortDateString() + "'"));
             txtTotal.Text = Convert.ToString(entrada2);
 
             dineroAnterior = Convert.ToDouble(con.getUnDato("select cantidad from dineroCaja where id=1"));
@@ -129,8 +127,6 @@ namespace Sistema_Reservaciones
 			dgabonos.DataSource = con.llenarVistas(query2);
 			string query3 = "select r.idReserva as Id_Reserva,r.nombre as Nombre_Cliente,ed.cantidad as Cantidad from entradaDepositos as ed inner join Reserva as r on ed.idReserva = r.idReserva where ed.fecha = '" + DateTime.Now.ToShortDateString() + "' and ed.cantidad>0 order by  r.idReserva ";
 			dgdepositos.DataSource = con.llenarVistas(query3);
-			//textBox1 = Convert.ToString(ganaciaReal + Convert.ToDouble(dineroAnterior));
-			//txtTotal.Text = con.getUnDato("select Sum(convert(numeric(10, 2), (Cantidad))) AS 'Ganancia' from abonos where fecha='" + DateTime.Now.ToShortDateString() + "'");
 		}
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -139,7 +135,6 @@ namespace Sistema_Reservaciones
              , "Atencion", MessageBoxButtons.YesNo);
             if (yus == DialogResult.Yes)
             {
-                //this.Close();
                 menu_inicio menu = new menu_inicio();
                 if (Program.NombreUsuario == "admin")
                 {
@@ -156,14 +151,9 @@ namespace Sistema_Reservaciones
              , "Atencion", MessageBoxButtons.YesNo);
             if (yus == DialogResult.Yes)
             {
-                //this.Close();
                 ib = Interaction.InputBox("Ingrese la cantidad de dinero que se quedara en caja");
                 if (noContieneLetras(ib))
                 {
-					//entrada2 dinero que entro en el dia
-					//gastos dinero gastado en el dia
-					//gananciareal dinero que entro en el dia menos los gastos
-					
                     string query1 = "insert into cortes values("+ganaciaReal+",'"+DateTime.Now.ToShortDateString()+"',"+entrada+","+gastos+")";
                     con.ejecutar(query1);
                     string query = "update dineroCaja set cantidad="+ib+" where id=1";

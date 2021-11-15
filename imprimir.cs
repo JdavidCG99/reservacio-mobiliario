@@ -49,7 +49,7 @@ namespace Sistema_Reservaciones
 			datosPrevios[12] = deposito;
 			datosPrevios[13] = descuento;
 			ivaPrev = iva;
-			//productosPrevios = productos;
+
 			this.previo = true;
 			this.idsp = idsp;
 			this.cantidades = cantidades;
@@ -57,11 +57,7 @@ namespace Sistema_Reservaciones
 			this.precios = precios;
 			this.totales = totales;
 		}
-        //public imprimir()
-        //{
-        //    InitializeComponent();
 
-        //}
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
@@ -70,8 +66,7 @@ namespace Sistema_Reservaciones
                 ImprimirTickets = new PrintDocument();
                 PrinterSettings ps = new PrinterSettings();
                 string nombreImpresora="";
-                //string nombreImpresora= "Microsoft Print To PDF";
-                //ps.PrinterName("Microsoft Print To PDF");
+
                 ImprimirTickets.PrinterSettings = ps;
                 if (rbTicket.Checked == true)
                 {
@@ -130,8 +125,7 @@ namespace Sistema_Reservaciones
 				}
 			}
            
-            //mas grueso usar tamaño fuente 12
-            //e.Graphics.DrawString("---------- Lolis rents ----------",font,Brushes.Black,new RectangleF(0,y+20,ancho,20));
+
         }
 
         private void ticket(string id, PrintPageEventArgs e) {
@@ -197,15 +191,11 @@ namespace Sistema_Reservaciones
 			y = y + 12;
 			for (int c = 0; c < idsp.Length; c++)
             {
-                //e.Graphics.DrawString("Cant |  Producto             | P.unit |Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                //y = y + 12;
+
                 e.Graphics.DrawString(" " + cantidades[c] + "      " + nombres[c], font, Brushes.Black, new RectangleF(mi, y, ancho-70, 15));
                 e.Graphics.DrawString(precios[c] + "    "+ totales[c], font, Brushes.Black, new RectangleF(mi+140, y, ancho-140, 15));
 				y = y + 12;
-                //e.Graphics.DrawString("P.unit  |  Cantidad    |  Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                //y = y + 12;
-                //e.Graphics.DrawString("  " + precios[c] + "           " + cantidades[c] + "               " + totales[c], font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                //y = y + 12;
+
                 subtotal = subtotal + Convert.ToInt32(totales[c]);
             }
             int anchoDinero = 185;
@@ -292,13 +282,11 @@ namespace Sistema_Reservaciones
             y = -100;
             //e.Graphics.DrawString("-------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y + 220, 250, 20));
             e.Graphics.DrawString("Cliente: " + nombre + "      Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
-            //e.Graphics.DrawString("Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
+
             e.Graphics.DrawString("Ubicacion: " + ubicacion ,font, Brushes.Black, new RectangleF(mi, y + 270, ancho, 40));
             e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 50));
             e.Graphics.DrawLine(blackPen, mi, y + 340, p2l, y + 340);
-            //e.Graphics.DrawString("Fecha evento: " + fecha, font, Brushes.Black, new RectangleF(mi, y + 340, ancho, 50));
-            //e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y + 353, 250, 20));
-            //e.Graphics.DrawString("Productos. ", subs, Brushes.Black, new RectangleF(mi, y + 345, ancho, 20));
+
             DataTable ids = bdd.llenarVistas("select dr.idProductos from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
             string[] idsp = ids.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
             DataTable nombrep = bdd.llenarVistas("select p.nombre from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
@@ -319,19 +307,12 @@ namespace Sistema_Reservaciones
             {
                 e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------", font, Brushes.Black, new RectangleF(md, y, 395, 20));
                 y = y + 13;
-                //e.Graphics.DrawString("Id. |  Producto                                           | P.unit | Cant. | Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                //y = y + 13;
-                //e.Graphics.DrawString(" " + idsp[c] + "     " + nombres[c]+ "  " + precios[c] + "           " + cantidades[c] + "               " + totales[c], font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi+5, y, 45, 15));
+				  e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi+5, y, 45, 15));
                 e.Graphics.DrawString(nombres[c], font, Brushes.Black, new RectangleF(mi + 45, y, 255, 15));
                 e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
-                //e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
                 e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 350, y, 50, 15));
                 y = y + 10;
-                //e.Graphics.DrawString("P.unit  |  Cantidad    |  Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                //y = y + 15;
-                //e.Graphics.DrawString("  " + precios[c] + "           " + cantidades[c] + "               " + totales[c], font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-                //y = y + 15;
+
                 subtotal = subtotal + Convert.ToInt32(totales[c]);
             }
             e.Graphics.DrawString("-------------------------------------------------------------------------------------------", font, Brushes.Black, new RectangleF(md, y, ancho, 20));
@@ -368,10 +349,7 @@ namespace Sistema_Reservaciones
         }
 		private void ticketPrevio(PrintPageEventArgs e)
 		{
-			//string query = "select r.idReserva, r.fechaReserva,r.fechaSalida,r.fechaRegreso,r.nombre,r.telefono,f.ubicacion," +
-			//   "f.Precio,r.descripcionUbicacion,r.total,r.anticipo,r.restante,r.deposito,r.descuento from Reserva as r inner join Flete as f " +
-			//   "on r.idFlete=f.idFlete where r.idReserva=" + id;
-			//string[] datos = bdd.verInfoTicket(query);
+
 			string[] datos = this.datosPrevios;
 			string folio = datos[0];
 			string fechaReserva = datos[1];
@@ -387,8 +365,7 @@ namespace Sistema_Reservaciones
 			string restante = datos[11];
 			string deposito = datos[12];
 			string descuento = datos[13];
-			//precio = Convert.ToString(bdd.getUnDato("select flete from Reserva where estatus=1 and idReserva=" + id));
-			//string iva = Convert.ToString(bdd.getUnDato("select iva from Reserva where estatus=1 and idReserva=" + id));
+
 			string iva = this.ivaPrev;
 			Font font = new Font("Arial", 8);
 			Font name = new Font("Brush Script MT", 30);
@@ -417,37 +394,16 @@ namespace Sistema_Reservaciones
 			e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y + 330, 250, 20));
 			e.Graphics.DrawString("Productos. ", font, Brushes.Black, new RectangleF(mi, y + 340, ancho, 10));
 
-			//string[] idsp = productosPrevios.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//string[] nombres = productosPrevios.Rows.OfType<DataRow>().Select(k => k[1].ToString()).ToArray();
-			//string[] precios = productosPrevios.Rows.OfType<DataRow>().Select(k => k[3].ToString()).ToArray();
-			//string[] cantidades = productosPrevios.Rows.OfType<DataRow>().Select(k => k[4].ToString()).ToArray();
-			//string[] totales = productosPrevios.Rows.OfType<DataRow>().Select(k => k[5].ToString()).ToArray();
-			//DataTable ids = bdd.llenarVistas("select dr.idProductos from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] idsp = ids.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable nombrep = bdd.llenarVistas("select p.nombre from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] nombres = nombrep.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable preciop = bdd.llenarVistas("select p.precioVenta from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] precios = preciop.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable cantidadp = bdd.llenarVistas("select dr.cantidad from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] cantidades = cantidadp.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable totalp = bdd.llenarVistas("select dr.total from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] totales = totalp.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-
 			y = y + 355;
 			int subtotal = 0;
 			e.Graphics.DrawString("Cant |  Producto             | P.unit |Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
 			y = y + 12;
 			for (int c = 0; c < idsp.Length-1; c++)
 			{
-				//e.Graphics.DrawString("Cant |  Producto             | P.unit |Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-				//y = y + 12;
 				e.Graphics.DrawString(" " + cantidades[c] + "      " + nombres[c], font, Brushes.Black, new RectangleF(mi, y, ancho - 70, 15));
 				e.Graphics.DrawString(precios[c] + "    " + totales[c], font, Brushes.Black, new RectangleF(mi + 140, y, ancho - 140, 15));
 				y = y + 12;
-				//e.Graphics.DrawString("P.unit  |  Cantidad    |  Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-				//y = y + 12;
-				//e.Graphics.DrawString("  " + precios[c] + "           " + cantidades[c] + "               " + totales[c], font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-				//y = y + 12;
+			
 				subtotal = subtotal + Convert.ToInt32(totales[c]);
 			}
 			int anchoDinero = 185;
@@ -484,10 +440,6 @@ namespace Sistema_Reservaciones
 		}
 		private void notaPrevia(PrintPageEventArgs e)
 		{
-			//string query = "select r.idReserva, r.fechaReserva,r.fechaSalida,r.fechaRegreso,r.nombre,r.telefono,f.ubicacion," +
-			//   "f.Precio,r.descripcionUbicacion,r.total,r.anticipo,r.restante,r.deposito,r.descuento from Reserva as r inner join Flete as f " +
-			//   "on r.idFlete=f.idFlete where r.idReserva=" + id;
-			//string[] datos = bdd.verInfoTicket(query);
 			string[] datos = datosPrevios;
 			string folio = datos[0];
 			string fechaReserva = datos[1];
@@ -503,8 +455,7 @@ namespace Sistema_Reservaciones
 			string restante = datos[11];
 			string deposito = datos[12];
 			string descuento = datos[13];
-			//precio = Convert.ToString(bdd.getUnDato("select flete from Reserva where estatus=1 and idReserva=" + id));
-			//string iva = Convert.ToString(bdd.getUnDato("select iva from Reserva where estatus=1 and idReserva=" + id));
+
 			string iva = this.ivaPrev;
 			Font font = new Font("Arial", 10);
 			Font subs = new Font("Arial", 12);
@@ -540,24 +491,7 @@ namespace Sistema_Reservaciones
 			e.Graphics.DrawString("Ubicacion: " + ubicacion, font, Brushes.Black, new RectangleF(mi, y + 270, ancho, 40));
 			e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 50));
 			e.Graphics.DrawLine(blackPen, mi, y + 340, p2l, y + 340);
-			//e.Graphics.DrawString("Fecha evento: " + fecha, font, Brushes.Black, new RectangleF(mi, y + 340, ancho, 50));
-			//e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y + 353, 250, 20));
-			//e.Graphics.DrawString("Productos. ", subs, Brushes.Black, new RectangleF(mi, y + 345, ancho, 20));
-			//DataTable ids = bdd.llenarVistas("select dr.idProductos from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] idsp = ids.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable nombrep = bdd.llenarVistas("select p.nombre from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] nombres = nombrep.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable preciop = bdd.llenarVistas("select p.precioVenta from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] precios = preciop.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable cantidadp = bdd.llenarVistas("select dr.cantidad from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] cantidades = cantidadp.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//DataTable totalp = bdd.llenarVistas("select dr.total from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
-			//string[] totales = totalp.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//string[] idsp = productosPrevios.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-			//string[] nombres = productosPrevios.Rows.OfType<DataRow>().Select(k => k[1].ToString()).ToArray();
-			//string[] precios = productosPrevios.Rows.OfType<DataRow>().Select(k => k[3].ToString()).ToArray();
-			//string[] cantidades = productosPrevios.Rows.OfType<DataRow>().Select(k => k[4].ToString()).ToArray();
-			//string[] totales = productosPrevios.Rows.OfType<DataRow>().Select(k => k[5].ToString()).ToArray();
+
 			y = y + 345;
 			int subtotal = 0;
 			//e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------", font, Brushes.Black, new RectangleF(md, y, 395, 20));
@@ -568,19 +502,14 @@ namespace Sistema_Reservaciones
 			{
 				e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------", font, Brushes.Black, new RectangleF(md, y, 395, 20));
 				y = y + 13;
-				//e.Graphics.DrawString("Id. |  Producto                                           | P.unit | Cant. | Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-				//y = y + 13;
-				//e.Graphics.DrawString(" " + idsp[c] + "     " + nombres[c]+ "  " + precios[c] + "           " + cantidades[c] + "               " + totales[c], font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
+
 				e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi + 5, y, 45, 15));
 				e.Graphics.DrawString(nombres[c], font, Brushes.Black, new RectangleF(mi + 45, y, 255, 15));
 				e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
-				//e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
+
 				e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 350, y, 50, 15));
 				y = y + 10;
-				//e.Graphics.DrawString("P.unit  |  Cantidad    |  Total", font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-				//y = y + 15;
-				//e.Graphics.DrawString("  " + precios[c] + "           " + cantidades[c] + "               " + totales[c], font, Brushes.Black, new RectangleF(mi, y, ancho, 15));
-				//y = y + 15;
+
 				subtotal = subtotal + Convert.ToInt32(totales[c]);
 			}
 			e.Graphics.DrawString("-------------------------------------------------------------------------------------------", font, Brushes.Black, new RectangleF(md, y, ancho, 20));

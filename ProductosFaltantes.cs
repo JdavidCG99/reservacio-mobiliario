@@ -49,7 +49,6 @@ namespace Sistema_Reservaciones
 						   " \nNo existe manera de revertir esta accion una vez cargada", "Atencion", MessageBoxButtons.YesNo);
 			if (yus == DialogResult.Yes)
 			{
-				//string idActual = gvDeudas.Rows[].Cells[0].Value.ToString();
 				string query = "update materialPendiente set estatus=0 where idNota=" + idActual;
 				bdd.ejecutar(query);
 				string query2 = "select mp.idNota as Id_Reservacion, mp.nombreCliente as Nombre_Cliente, mp.telefonoCliente as Celular," +

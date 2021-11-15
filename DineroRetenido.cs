@@ -47,7 +47,6 @@ namespace Sistema_Reservaciones
 			DialogResult yus = MessageBox.Show("Dar por devuelto el dinero al cliente" +
 						   " \nNo existe manera de revertir esta accion una vez cargada", "Atencion", MessageBoxButtons.YesNo);
 			if (yus == DialogResult.Yes){
-				//string idActual = gvDeudas.Rows[].Cells[0].Value.ToString();
 				string query = "update dineroRetenido set estatus=0 , fecha_salida='" + DateTime.Now.ToShortDateString() + "' where id="+idActual;
 				bdd.ejecutar(query);
 				string query2 = "select id as Id, nombre as Nombre_Cliente, descripcion as Descripcion ,cantidad as Cantidad,fechaEntrada as Fecha_entrada from dineroRetenido where estatus=1";

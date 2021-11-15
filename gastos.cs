@@ -52,7 +52,6 @@ namespace Sistema_Reservaciones
             , "Atencion", MessageBoxButtons.YesNo);
             if (yus == DialogResult.Yes)
             {
-                //this.Close();
                 menu_inicio menu = new menu_inicio();
                 if (Program.NombreUsuario == "admin")
                 {

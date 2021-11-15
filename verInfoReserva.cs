@@ -33,7 +33,6 @@ namespace Sistema_Reservaciones
 
         private void verInfoReserva_Load(object sender, EventArgs e)
         {
-            //MessageBox.Show(Convert.ToString(id));
             string [] datos = conexion.verInfoReserva("select r.idReserva, r.fechaReserva,r.fechaSalida,r.fechaRegreso," +
                 "r.nombre,r.telefono,f.ubicacion,r.descripcionUbicacion,r.total,r.anticipo,r.restante,r.deposito " +
                 "from Reserva as r inner join Flete as f on r.idFlete=f.idFlete where r.idReserva="+id);
@@ -49,7 +48,6 @@ namespace Sistema_Reservaciones
             tbAnticipo.Text = datos[9];
             tbRestante.Text = datos[10];
             tbDeposito.Text = datos[11];
-            //string idActual = gvReservaciones.Rows[e.RowIndex].Cells[0].Value.ToString();
             string query = "select d.idProductos as Id,p.nombre as Nombre,p.descripcion as Descripcion," +
                 "d.cantidad as Cantidad_a_llevar from Detalle_Reserva as d " +
                 "inner join Productos as p on d.idProductos=p.idProductos where d.idReserva=" + id + " and estatus=1 and cantidad>0";

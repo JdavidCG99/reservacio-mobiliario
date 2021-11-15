@@ -29,8 +29,6 @@ namespace Sistema_Reservaciones
 
             MessageBox.Show("Flete Actualizado Exitosamente!", "Guardar");
 
-            //ActiveForm.Close();
-
             catalogoFletes catalogoFletes = new catalogoFletes();
             catalogoFletes.Show();
             this.Close();
@@ -42,8 +40,6 @@ namespace Sistema_Reservaciones
 
             if (result == DialogResult.OK)
             {
-                //ActiveForm.Close();
-
                 catalogoFletes catalogoFletes = new catalogoFletes();
                 catalogoFletes.Show();
                 this.Close();

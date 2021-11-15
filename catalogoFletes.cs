@@ -24,7 +24,6 @@ namespace Sistema_Reservaciones
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //ActiveForm.Hide();
             this.Close();
             agregarFletes agregarFletes = new agregarFletes();
             agregarFletes.Show();
