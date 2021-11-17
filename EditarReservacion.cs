@@ -582,7 +582,8 @@ namespace Sistema_Reservaciones
                         {
                             if (!cbCliente.Text.Equals("Cliente General "))
                             {
-                                double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
+                                //double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
+                                double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
                                 tbTotal.Text = Convert.ToString(total);
                             }
                             else
