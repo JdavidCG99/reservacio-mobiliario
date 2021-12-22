@@ -493,7 +493,7 @@ namespace Sistema_Reservaciones
 		private Boolean estaDisponibleProducto(string idProducto, string cantidad)
 		{
 			DataTable reservaciones = conexion2.llenarVistas("select idReserva from Reserva where (fechaSalida between '" + dtFechaEntrega.Text + "' and '" + dtFechaRegreso.Text + "' or " +
-				" fechaRegreso between '" + dtFechaEntrega.Text + "' and '" + dtFechaRegreso.Text + "') and estatus=1");
+				" fechaRegreso between '" + dtFechaEntrega.Text + "' and '" + dtFechaRegreso.Text + "') and estatus=1 and idReserva!="+tbId.Text);
 
 			string[] reserCercanas = reservaciones.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
 			double productoStock = Convert.ToDouble(conexion2.getUnDato("select stock from Productos where idProductos =" + idProducto + " and estatus=1"));

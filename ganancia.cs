@@ -35,8 +35,8 @@ namespace Sistema_Reservaciones
                 chartGanancia.Series["Fecha"].Points.AddXY(dt.Rows[i][Convert.ToString("Fecha")], dt.Rows[i]["Ganancia"]);
                 gananciaTotal = gananciaTotal + Convert.ToDecimal(dt.Rows[i]["Ganancia"]);
             }
-            txtTotal.Text = Convert.ToString(gananciaTotal);
-			string entrada = conexion.getUnDato("select Sum(convert(numeric(10, 2), (entrada)))  from cortes  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
+            
+			string entrada = conexion.getUnDato("select Sum(convert(numeric(10, 2), (cantidad)))  from abonos  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
 
 			if (entrada.Equals(""))
 			{
@@ -44,16 +44,16 @@ namespace Sistema_Reservaciones
 			}
 			tbEntrada.Text = entrada;
 
-			string salida = conexion.getUnDato("select Sum(convert(numeric(10, 2), (salidas)))  from cortes  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
+			string salida = conexion.getUnDato("select sum(convert(numeric(10,2),costo))  from gastos  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "' and descripcion != 'Depositos'");
 			if (salida.Equals(""))
 			{
 				salida = "0";
 			}
 			tbSalidas.Text = salida;
-
-			string query3 = "select costo as Importe,descripcion as Categoria,info as Descripcion from gastos where (fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "') and descripcion != 'Depositos' and fecha != '" + DateTime.Now + "'";
+			txtTotal.Text = Convert.ToString(Convert.ToDouble(tbEntrada.Text)-Convert.ToDouble(tbSalidas.Text));
+			string query3 = "select costo as Importe,descripcion as Categoria,info as Descripcion from gastos where (fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "') and descripcion != 'Depositos'";
 			dggastos.DataSource = conexion.llenarVistas(query3);
-			string query2 = "select r.idReserva as Id_Reserva,r.nombre as Nombre_Cliente,a.cantidad as Cantidad from abonos as a inner join Reserva r on a.idReserva = r.idReserva where (a.fecha  between'" + dtpInical.Text + "' and '" + dtpFinal.Text + "') and convert(numeric(10, 2), (a.cantidad)) > 0 and a.fecha != '" + DateTime.Now + "'";
+			string query2 = "select r.idReserva as Id_Reserva,r.nombre as Nombre_Cliente,a.cantidad as Cantidad from abonos as a inner join Reserva as r on a.idReserva = r.idReserva where (a.fecha  between'" + dtpInical.Text + "' and '" + dtpFinal.Text + "') and convert(numeric(10, 2), (a.cantidad)) > 0";
 			dgabonos.DataSource = conexion.llenarVistas(query2);
 		}
 
@@ -73,22 +73,21 @@ namespace Sistema_Reservaciones
                 chartGanancia.Series["Fecha"].Points.AddXY(dt.Rows[i][Convert.ToString("Fecha")], dt.Rows[i]["Ganancia"]);
                 gananciaTotal = gananciaTotal + Convert.ToDecimal(dt.Rows[i]["Ganancia"]);
             }
-            txtTotal.Text = Convert.ToString(gananciaTotal);
-			string entrada = conexion.getUnDato("select Sum(convert(numeric(10, 2), (entrada)))  from cortes  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
-
+            //txtTotal.Text = Convert.ToString(gananciaTotal);
+			string entrada = conexion.getUnDato("select Sum(convert(numeric(10, 2), (cantidad)))  from abonos  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
 			if (entrada.Equals(""))
 			{
 				entrada = "0";
 			}
 			tbEntrada.Text = entrada;
 
-			string salida = conexion.getUnDato("select Sum(convert(numeric(10, 2), (salidas)))  from cortes  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
+			string salida = conexion.getUnDato("select sum(convert(numeric(10,2),costo))  from gastos  where fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "'");
 			if (salida.Equals(""))
 			{
 				salida = "0";
 			}
 			tbSalidas.Text = salida;
-
+			txtTotal.Text = Convert.ToString(Convert.ToDouble(tbEntrada.Text) - Convert.ToDouble(tbSalidas.Text));
 			string query3 = "select costo as Importe,descripcion as Categoria,info as Descripcion from gastos where (fecha between '" + dtpInical.Text + "' and '" + dtpFinal.Text + "') and descripcion != 'Depositos' and fecha != '" + DateTime.Now +"'";
 
 			dggastos.DataSource = conexion.llenarVistas(query3);
@@ -128,7 +127,9 @@ namespace Sistema_Reservaciones
             this.Close();
         }
 
-     
+		private void dgabonos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
 
-    }
+		}
+	}
 }

@@ -196,7 +196,7 @@ namespace Sistema_Reservaciones
                         {
                             if (estaDisponibleProducto(idActual, ib))
                             {
-								if ((Convert.ToInt32(datos[0]) >= 1274 && Convert.ToInt32(datos[0]) <= 1285) || (Convert.ToInt32(datos[0]) >= 1003 && Convert.ToInt32(datos[0]) <= 1070) || datos[0].Equals("1300") || datos[0].Equals("1301"))
+								if ((Convert.ToInt32(datos[0]) >= 1274 && Convert.ToInt32(datos[0]) <= 1285) || (Convert.ToInt32(datos[0]) >= 1003 && Convert.ToInt32(datos[0]) <= 1070) || datos[0].Equals("1300") || datos[0].Equals("1301") || datos[0].Equals("2317"))
 								{
 									DialogResult con = MessageBox.Show("Se esta vendiendo como paquete?"
 									 , "Atencion", MessageBoxButtons.YesNo);
@@ -561,7 +561,41 @@ namespace Sistema_Reservaciones
             
             try
             {
-                if (validarDatos())
+				if (validarDatos())
+				{
+					if (tbFleteCosto.TextLength == 0)
+					{
+						tbFleteCosto.Text = "0";
+					}
+					if (tbiva.TextLength == 0)
+					{
+						tbiva.Text = "0";
+					}
+					if (tbDescuento.TextLength == 0)
+					{
+						tbDescuento.Text = "0";
+					}
+					if (tbDeposito.TextLength == 0)
+					{
+						tbDeposito.Text = "0";
+					}
+
+					double totalProductos = costoProductos() + subtotal;
+					tbSubTotal.Text = Convert.ToString(totalProductos);
+
+					if(Convert.ToDouble(tbDescuento.Text) > Convert.ToDouble(tbSubTotal.Text))
+					{
+						MessageBox.Show("El descuento no puede ser mayor al dubtotal de la reservacion", "Atencion");
+					}
+
+					double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbFleteCosto.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
+					tbTotal.Text = Convert.ToString(total);
+
+					double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
+					tbRestante.Text = Convert.ToString(restante);
+
+				}
+                /*if (validarDatos())
                 {
                     double totalProductos = costoProductos();
                     tbSubTotal.Text = Convert.ToString(totalProductos + subtotal);
@@ -582,9 +616,9 @@ namespace Sistema_Reservaciones
                         {
                             if (!cbCliente.Text.Equals("Cliente General "))
                             {
-                                //double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
-                                double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
-                                tbTotal.Text = Convert.ToString(total);
+								//double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbiva.Text) - Convert.ToDouble(tbDescuento.Text);
+								double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbFleteCosto.Text) + Convert.ToDouble(tbiva.Text);
+								tbTotal.Text = Convert.ToString(total);
                             }
                             else
                             {
@@ -601,7 +635,7 @@ namespace Sistema_Reservaciones
                             MessageBox.Show("El descuento no puede ser mayor al total de productos de la reservacion", "Atencion");
 							tbDescuento.Text = "0";
 							fail = true;
-							double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbFleteCosto.Text);
+							double total = Convert.ToDouble(tbSubTotal.Text) + Convert.ToDouble(tbDeposito.Text) + Convert.ToDouble(tbFleteCosto.Text) + Convert.ToDouble(tbiva.Text);
 							tbTotal.Text = Convert.ToString(total);
 
 							double restante = Convert.ToDouble(tbTotal.Text) - Convert.ToDouble(tbAnticipo.Text);
@@ -704,7 +738,7 @@ namespace Sistema_Reservaciones
 						}
 					}
 
-                }
+                }*/
                 if (tbSubTotal.TextLength > 0 && tbDescuento.TextLength > 0 && tbDeposito.TextLength > 0 &&
                     tbTotal.TextLength > 0 && tbAnticipo.TextLength > 0 && tbRestante.TextLength > 0)
                 {
@@ -732,7 +766,7 @@ namespace Sistema_Reservaciones
 			
 					int id = Convert.ToInt32(substring);
 
-					string query = "update Reserva set idFlete=" + Convert.ToString(id) + ", nombre='"+cbCliente.Text +"' , descripcionUbicacion='" + tbDescripcion.Text + "' , telefono='" + tbCelular.Text +"' ,"+
+					string query = "update Reserva set idFlete=" + Convert.ToString(id) + ",flete="+tbFleteCosto.Text+" , nombre='"+cbCliente.Text +"' , descripcionUbicacion='" + tbDescripcion.Text + "' , telefono='" + tbCelular.Text +"' ,"+
                         "total=" + tbTotal.Text + " , descuento="+tbDescuento.Text+" , anticipo=" + tbAnticipo.Text + " , restante=" + tbRestante.Text + " , deposito=" + tbDeposito.Text + " , actualizacion='" + DateTime.Now.ToShortDateString() +
                         "', iva="+tbiva.Text+" where idReserva=" + tbFolio.Text;
                     conexion.ejecutar(query);
@@ -1113,5 +1147,9 @@ namespace Sistema_Reservaciones
 			btnVerificar.BackColor = Color.Yellow;
 		}
 
+		private void label8_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

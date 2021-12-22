@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="abonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="abonos.Designer.cs">
+      <DependentUpon>abonos.cs</DependentUpon>
+    </Compile>
     <Compile Include="actualizacionClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     <Compile Include="verReservaciones.Designer.cs">
       <DependentUpon>verReservaciones.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="abonos.resx">
+      <DependentUpon>abonos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="actualizacionClientes.resx">
       <DependentUpon>actualizacionClientes.cs</DependentUpon>
     </EmbeddedResource>

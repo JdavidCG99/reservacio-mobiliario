@@ -51,8 +51,9 @@
 			this.registrarFaltanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.productosFaltantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.depositosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
 			this.comfiguracionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.abonosReservacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -200,6 +201,7 @@
             this.dineroPendienteToolStripMenuItem,
             this.registrarFaltanteToolStripMenuItem,
             this.productosFaltantesToolStripMenuItem,
+            this.abonosReservacionesToolStripMenuItem,
             this.depositosToolStripMenuItem,
             this.comfiguracionToolStripMenuItem});
 			this.otrasOpcionesToolStripMenuItem.Name = "otrasOpcionesToolStripMenuItem";
@@ -209,37 +211,44 @@
 			// productosFueraToolStripMenuItem
 			// 
 			this.productosFueraToolStripMenuItem.Name = "productosFueraToolStripMenuItem";
-			this.productosFueraToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
+			this.productosFueraToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
 			this.productosFueraToolStripMenuItem.Text = "Productos fuera";
 			this.productosFueraToolStripMenuItem.Click += new System.EventHandler(this.productosFueraToolStripMenuItem_Click);
 			// 
 			// dineroPendienteToolStripMenuItem
 			// 
 			this.dineroPendienteToolStripMenuItem.Name = "dineroPendienteToolStripMenuItem";
-			this.dineroPendienteToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
+			this.dineroPendienteToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
 			this.dineroPendienteToolStripMenuItem.Text = "Dinero pendiente";
 			this.dineroPendienteToolStripMenuItem.Click += new System.EventHandler(this.dineroPendienteToolStripMenuItem_Click);
 			// 
 			// registrarFaltanteToolStripMenuItem
 			// 
 			this.registrarFaltanteToolStripMenuItem.Name = "registrarFaltanteToolStripMenuItem";
-			this.registrarFaltanteToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
+			this.registrarFaltanteToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
 			this.registrarFaltanteToolStripMenuItem.Text = "Registrar faltante";
 			this.registrarFaltanteToolStripMenuItem.Click += new System.EventHandler(this.registrarFaltanteToolStripMenuItem_Click);
 			// 
 			// productosFaltantesToolStripMenuItem
 			// 
 			this.productosFaltantesToolStripMenuItem.Name = "productosFaltantesToolStripMenuItem";
-			this.productosFaltantesToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
+			this.productosFaltantesToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
 			this.productosFaltantesToolStripMenuItem.Text = "Productos faltantes";
 			this.productosFaltantesToolStripMenuItem.Click += new System.EventHandler(this.productosFaltantesToolStripMenuItem_Click);
 			// 
 			// depositosToolStripMenuItem
 			// 
 			this.depositosToolStripMenuItem.Name = "depositosToolStripMenuItem";
-			this.depositosToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
+			this.depositosToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
 			this.depositosToolStripMenuItem.Text = "Depositos";
 			this.depositosToolStripMenuItem.Click += new System.EventHandler(this.depositosToolStripMenuItem_Click);
+			// 
+			// comfiguracionToolStripMenuItem
+			// 
+			this.comfiguracionToolStripMenuItem.Name = "comfiguracionToolStripMenuItem";
+			this.comfiguracionToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
+			this.comfiguracionToolStripMenuItem.Text = "Configuracion";
+			this.comfiguracionToolStripMenuItem.Click += new System.EventHandler(this.comfiguracionToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -249,12 +258,12 @@
 			this.toolStripMenuItem2.Visible = false;
 			this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
 			// 
-			// comfiguracionToolStripMenuItem
+			// abonosReservacionesToolStripMenuItem
 			// 
-			this.comfiguracionToolStripMenuItem.Name = "comfiguracionToolStripMenuItem";
-			this.comfiguracionToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
-			this.comfiguracionToolStripMenuItem.Text = "Configuracion";
-			this.comfiguracionToolStripMenuItem.Click += new System.EventHandler(this.comfiguracionToolStripMenuItem_Click);
+			this.abonosReservacionesToolStripMenuItem.Name = "abonosReservacionesToolStripMenuItem";
+			this.abonosReservacionesToolStripMenuItem.Size = new System.Drawing.Size(275, 28);
+			this.abonosReservacionesToolStripMenuItem.Text = "Abonos reservaciones";
+			this.abonosReservacionesToolStripMenuItem.Click += new System.EventHandler(this.abonosReservacionesToolStripMenuItem_Click);
 			// 
 			// menu_inicio
 			// 
@@ -308,6 +317,7 @@
 		private System.Windows.Forms.ToolStripMenuItem productosFaltantesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem depositosToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem comfiguracionToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem abonosReservacionesToolStripMenuItem;
 	}
 }
 

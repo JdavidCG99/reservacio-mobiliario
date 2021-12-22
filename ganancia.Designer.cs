@@ -276,6 +276,7 @@
 			this.dgabonos.RowTemplate.Height = 24;
 			this.dgabonos.Size = new System.Drawing.Size(645, 370);
 			this.dgabonos.TabIndex = 29;
+			this.dgabonos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgabonos_CellContentClick);
 			// 
 			// dggastos
 			// 

@@ -167,5 +167,12 @@ namespace Sistema_Reservaciones
 			y.Show();
 			this.Hide();
 		}
+
+		private void abonosReservacionesToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			abonos y = new abonos();
+			y.Show();
+			this.Hide();
+		}
 	}
 }

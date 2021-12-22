@@ -70,12 +70,14 @@ namespace Sistema_Reservaciones
                 ImprimirTickets.PrinterSettings = ps;
                 if (rbTicket.Checked == true)
                 {
-                    nombreImpresora = "58 Printer";
-                }
+					nombreImpresora = "58 Printer";
+					//nombreImpresora = "Microsoft Print To PDF";
+				}
                 else if (rbNota.Checked == true)
                 {
-                    nombreImpresora = "EPSON L3110 Series";
-                }
+					nombreImpresora = "EPSON L3110 Series";
+					//nombreImpresora = "Microsoft Print To PDF";
+				}
                 else
                 {
                     nombreImpresora = "Microsoft Print To PDF";
@@ -172,6 +174,7 @@ namespace Sistema_Reservaciones
             e.Graphics.DrawString("Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
             e.Graphics.DrawString("Ubicacion: " + ubicacion, font, Brushes.Black, new RectangleF(mi, y + 270, ancho, 20));
             e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 50));
+			//y = y + 30;
            // e.Graphics.DrawString("Fecha evento: " + fecha, font, Brushes.Black, new RectangleF(mi, y + 342, ancho, 50));
             e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y + 330, 250, 20));
             e.Graphics.DrawString("Productos. ", font, Brushes.Black, new RectangleF(mi, y + 340, ancho, 10));
@@ -192,23 +195,40 @@ namespace Sistema_Reservaciones
 			for (int c = 0; c < idsp.Length; c++)
             {
 
-                e.Graphics.DrawString(" " + cantidades[c] + "      " + nombres[c], font, Brushes.Black, new RectangleF(mi, y, ancho-70, 15));
-                e.Graphics.DrawString(precios[c] + "    "+ totales[c], font, Brushes.Black, new RectangleF(mi+140, y, ancho-140, 15));
+                e.Graphics.DrawString(" " + cantidades[c], font, Brushes.Black, new RectangleF(mi, y, ancho-170,15));
+                e.Graphics.DrawString(nombres[c], font, Brushes.Black, new RectangleF(mi+30, y, ancho-100, 15));
+                e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi+125, y, ancho-170, 15), izquierda);
+                e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi+160, y, ancho-170, 15), izquierda);
 				y = y + 12;
 
                 subtotal = subtotal + Convert.ToInt32(totales[c]);
             }
             int anchoDinero = 185;
             e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y, 250, 20));
-            e.Graphics.DrawString("Subtotal:   " + Convert.ToString(subtotal) + "  ", font, Brushes.Black, new RectangleF(mi, y + 15, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Flete:       " + precio + "  ", font, Brushes.Black, new RectangleF(mi, y + 30, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Iva:        " + iva + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
+
+            e.Graphics.DrawString("Subtotal:   ", font, Brushes.Black, new RectangleF(mi+100, y + 20, anchoDinero-30, 20));
+            e.Graphics.DrawString(Convert.ToString(subtotal) + " ", font, Brushes.Black, new RectangleF(mi+160, y + 15, 30, 20), izquierda);
+
+            e.Graphics.DrawString("Flete:   ", font, Brushes.Black, new RectangleF(mi+115, y + 35, anchoDinero-30, 20));
+            e.Graphics.DrawString(precio, font, Brushes.Black, new RectangleF(mi+160, y + 30, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Iva:   ", font, Brushes.Black, new RectangleF(mi+123, y + 50, anchoDinero-30, 20));
+			e.Graphics.DrawString(iva, font, Brushes.Black, new RectangleF(mi+160, y + 45, 30, 20), izquierda);
 			y = y + 15;
-			e.Graphics.DrawString("Deposito:     " + deposito + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Descuento: " + descuento + "  ", font, Brushes.Black, new RectangleF(mi, y + 60, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Total:  " + total + "  ", font, Brushes.Black, new RectangleF(mi, y + 75, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Anticipo:   " + anticipo + "  ", font, Brushes.Black, new RectangleF(mi, y + 90, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Restante:  " + restante + "  ", font, Brushes.Black, new RectangleF(mi, y + 105, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Deposito:   ", font, Brushes.Black, new RectangleF(mi+98, y + 50, anchoDinero-30, 20));
+			e.Graphics.DrawString(deposito, font, Brushes.Black, new RectangleF(mi+160, y + 45, 30, 20), izquierda);
+
+            e.Graphics.DrawString("Descuento:  ", font, Brushes.Black, new RectangleF(mi+90, y + 65, anchoDinero-30, 20));
+            e.Graphics.DrawString(descuento, font, Brushes.Black, new RectangleF(mi+160, y + 60, 30, 20), izquierda);
+
+            e.Graphics.DrawString("Total:  ", font, Brushes.Black, new RectangleF(mi+118, y + 80, anchoDinero-30, 20));
+            e.Graphics.DrawString(total, font, Brushes.Black, new RectangleF(mi+160, y + 75, 30, 20), izquierda);
+
+            e.Graphics.DrawString("Anticipo:   ", font, Brushes.Black, new RectangleF(mi+105, y + 95, anchoDinero-30, 20));
+            e.Graphics.DrawString(anticipo, font, Brushes.Black, new RectangleF(mi+160, y + 90, 30, 20), izquierda);
+
+            e.Graphics.DrawString("Restante:  ", font, Brushes.Black, new RectangleF(mi+100, y + 110, anchoDinero-30, 20));
+            e.Graphics.DrawString(restante, font, Brushes.Black, new RectangleF(mi+160, y + 105, 30, 20), izquierda);
             // e.Graphics.DrawString("------------- TICKET -------------", font, Brushes.Black, new RectangleF(0, y + 40, ancho, 20));
             e.Graphics.DrawString(
                               "Nota: El deposito será reembolsado al momento de devolver los productos en buen estado."
@@ -230,6 +250,12 @@ namespace Sistema_Reservaciones
 
 
         }
+
+
+
+
+
+
         private void nota(string id,  PrintPageEventArgs e)
         {
             string query = "select r.idReserva, r.fechaReserva,r.fechaSalida,r.fechaRegreso,r.nombre,r.telefono,f.ubicacion," +
@@ -284,7 +310,8 @@ namespace Sistema_Reservaciones
             e.Graphics.DrawString("Cliente: " + nombre + "      Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
 
             e.Graphics.DrawString("Ubicacion: " + ubicacion ,font, Brushes.Black, new RectangleF(mi, y + 270, ancho, 40));
-            e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 50));
+            e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 80));
+			y = y + 30;
             e.Graphics.DrawLine(blackPen, mi, y + 340, p2l, y + 340);
 
             DataTable ids = bdd.llenarVistas("select dr.idProductos from Detalle_Reserva as dr inner join Productos as p on dr.idProductos=p.idProductos where idReserva=" + id + " and cantidad>0");
@@ -309,8 +336,8 @@ namespace Sistema_Reservaciones
                 y = y + 13;
 				  e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi+5, y, 45, 15));
                 e.Graphics.DrawString(nombres[c], font, Brushes.Black, new RectangleF(mi + 45, y, 255, 15));
-                e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
-                e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 350, y, 50, 15));
+                e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 290, y, 50, 15),izquierda);
+                e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 330, y, 50, 15),izquierda);
                 y = y + 10;
 
                 subtotal = subtotal + Convert.ToInt32(totales[c]);
@@ -319,15 +346,23 @@ namespace Sistema_Reservaciones
             //y = y + 13;
             int anchoDinero = 380;
             //e.Graphics.DrawLine(blackPen, mi, y + 125, p2l, y + 125);
-            e.Graphics.DrawString("Subtotal:    " + Convert.ToString(subtotal) + "  ", font, Brushes.Black, new RectangleF(mi, y + 15, anchoDinero, 20),izquierda);
-            e.Graphics.DrawString("Flete:         " + precio + "  ", font, Brushes.Black, new RectangleF(mi, y + 30, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Iva:       " + iva + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString("Subtotal:", font, Brushes.Black, new RectangleF(mi-45, y + 15, anchoDinero, 20),izquierda);
+            e.Graphics.DrawString(Convert.ToString(subtotal) + "  ", font, Brushes.Black, new RectangleF(mi, y + 15, anchoDinero, 20),izquierda);
+            e.Graphics.DrawString("Flete:", font, Brushes.Black, new RectangleF(mi-45, y + 30, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString(precio + "  ", font, Brushes.Black, new RectangleF(mi, y + 30, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Iva:", font, Brushes.Black, new RectangleF(mi-45, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(iva + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
 			y = y + 15;
-			e.Graphics.DrawString("Deposito:       " + deposito + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Descuento:      " + descuento + "  ", font, Brushes.Black, new RectangleF(mi, y + 60, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Total:   " + total + "  ", font, Brushes.Black, new RectangleF(mi, y + 75, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Anticipo:      " + anticipo + "  ", font, Brushes.Black, new RectangleF(mi, y + 90, anchoDinero, 20), izquierda);
-            e.Graphics.DrawString("Restante:   " + restante + "  ", font, Brushes.Black, new RectangleF(mi, y + 105, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Deposito:", font, Brushes.Black, new RectangleF(mi-45, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(deposito + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString("Descuento:", font, Brushes.Black, new RectangleF(mi-45, y + 60, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString(descuento + "  ", font, Brushes.Black, new RectangleF(mi, y + 60, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString("Total:", font, Brushes.Black, new RectangleF(mi-45, y + 75, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString(total + "  ", font, Brushes.Black, new RectangleF(mi, y + 75, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString("Anticipo:", font, Brushes.Black, new RectangleF(mi-45, y + 90, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString(anticipo + "  ", font, Brushes.Black, new RectangleF(mi, y + 90, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString("Restante:", font, Brushes.Black, new RectangleF(mi-45, y + 105, anchoDinero, 20), izquierda);
+            e.Graphics.DrawString(restante + "  ", font, Brushes.Black, new RectangleF(mi, y + 105, anchoDinero, 20), izquierda);
             // e.Graphics.DrawString("------------- TICKET -------------", font, Brushes.Black, new RectangleF(0, y + 40, ancho, 20));
             e.Graphics.DrawString(
                               "Nota: El deposito será reembolsado al momento de devolver los productos sin daños y al dia siguiente del evento."
@@ -347,6 +382,11 @@ namespace Sistema_Reservaciones
                                "Acepto haber recibido el material completo y en buen estado."
                                , font, Brushes.Black, new RectangleF(mi, y + 200, ancho, 160), centro);
         }
+
+
+
+
+
 		private void ticketPrevio(PrintPageEventArgs e)
 		{
 
@@ -390,6 +430,7 @@ namespace Sistema_Reservaciones
 			e.Graphics.DrawString("Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
 			e.Graphics.DrawString("Ubicacion: " + ubicacion, font, Brushes.Black, new RectangleF(mi, y + 270, ancho, 20));
 			e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 50));
+			//y = y + 30;
 			// e.Graphics.DrawString("Fecha evento: " + fecha, font, Brushes.Black, new RectangleF(mi, y + 342, ancho, 50));
 			e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y + 330, 250, 20));
 			e.Graphics.DrawString("Productos. ", font, Brushes.Black, new RectangleF(mi, y + 340, ancho, 10));
@@ -400,24 +441,40 @@ namespace Sistema_Reservaciones
 			y = y + 12;
 			for (int c = 0; c < idsp.Length-1; c++)
 			{
-				e.Graphics.DrawString(" " + cantidades[c] + "      " + nombres[c], font, Brushes.Black, new RectangleF(mi, y, ancho - 70, 15));
-				e.Graphics.DrawString(precios[c] + "    " + totales[c], font, Brushes.Black, new RectangleF(mi + 140, y, ancho - 140, 15));
+				e.Graphics.DrawString(" " + cantidades[c], font, Brushes.Black, new RectangleF(mi, y, ancho - 170, 15));
+				e.Graphics.DrawString(nombres[c], font, Brushes.Black, new RectangleF(mi + 30, y, ancho - 100, 15));
+				e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 125, y, ancho - 170, 15), izquierda);
+				e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 160, y, ancho - 170, 15), izquierda);
 				y = y + 12;
-			
+
 				subtotal = subtotal + Convert.ToInt32(totales[c]);
 			}
 			int anchoDinero = 185;
 			e.Graphics.DrawString("------------------------------------------------------", font, Brushes.Black, new RectangleF(0, y, 250, 20));
-			e.Graphics.DrawString("Subtotal:   " + Convert.ToString(subtotal) + "  ", font, Brushes.Black, new RectangleF(mi, y + 15, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Flete:       " + precio + "  ", font, Brushes.Black, new RectangleF(mi, y + 30, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Iva:        " + iva + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Subtotal:   ", font, Brushes.Black, new RectangleF(mi + 100, y + 20, anchoDinero - 30, 20));
+			e.Graphics.DrawString(Convert.ToString(subtotal) + " ", font, Brushes.Black, new RectangleF(mi + 160, y + 15, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Flete:   ", font, Brushes.Black, new RectangleF(mi + 115, y + 35, anchoDinero - 30, 20));
+			e.Graphics.DrawString(precio, font, Brushes.Black, new RectangleF(mi + 160, y + 30, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Iva:   ", font, Brushes.Black, new RectangleF(mi + 123, y + 50, anchoDinero - 30, 20));
+			e.Graphics.DrawString(iva, font, Brushes.Black, new RectangleF(mi + 160, y + 45, 30, 20), izquierda);
 			y = y + 15;
-			e.Graphics.DrawString("Deposito:     " + deposito + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Descuento: " + descuento + "  ", font, Brushes.Black, new RectangleF(mi, y + 60, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Total:  " + total + "  ", font, Brushes.Black, new RectangleF(mi, y + 75, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Anticipo:   " + anticipo + "  ", font, Brushes.Black, new RectangleF(mi, y + 90, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Restante:  " + restante + "  ", font, Brushes.Black, new RectangleF(mi, y + 105, anchoDinero, 20), izquierda);
-			// e.Graphics.DrawString("------------- TICKET -------------", font, Brushes.Black, new RectangleF(0, y + 40, ancho, 20));
+			e.Graphics.DrawString("Deposito:   ", font, Brushes.Black, new RectangleF(mi + 98, y + 50, anchoDinero - 30, 20));
+			e.Graphics.DrawString(deposito, font, Brushes.Black, new RectangleF(mi + 160, y + 45, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Descuento:  ", font, Brushes.Black, new RectangleF(mi + 90, y + 65, anchoDinero - 30, 20));
+			e.Graphics.DrawString(descuento, font, Brushes.Black, new RectangleF(mi + 160, y + 60, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Total:  ", font, Brushes.Black, new RectangleF(mi + 118, y + 80, anchoDinero - 30, 20));
+			e.Graphics.DrawString(total, font, Brushes.Black, new RectangleF(mi + 160, y + 75, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Anticipo:   ", font, Brushes.Black, new RectangleF(mi + 105, y + 95, anchoDinero - 30, 20));
+			e.Graphics.DrawString(anticipo, font, Brushes.Black, new RectangleF(mi + 160, y + 90, 30, 20), izquierda);
+
+			e.Graphics.DrawString("Restante:  ", font, Brushes.Black, new RectangleF(mi + 100, y + 110, anchoDinero - 30, 20));
+			e.Graphics.DrawString(restante, font, Brushes.Black, new RectangleF(mi + 160, y + 105, 30, 20), izquierda);
+
 			e.Graphics.DrawString(
 							  "Nota: El deposito será reembolsado al momento de devolver los productos en buen estado."
 							  , font, Brushes.Black, new RectangleF(mi, y + 120, 195, 50), centro);
@@ -438,6 +495,12 @@ namespace Sistema_Reservaciones
 
 
 		}
+
+
+
+
+
+
 		private void notaPrevia(PrintPageEventArgs e)
 		{
 			string[] datos = datosPrevios;
@@ -489,7 +552,8 @@ namespace Sistema_Reservaciones
 			e.Graphics.DrawString("Cliente: " + nombre + "      Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
 			//e.Graphics.DrawString("Celular: " + celular, font, Brushes.Black, new RectangleF(mi, y + 250, ancho, 20));
 			e.Graphics.DrawString("Ubicacion: " + ubicacion, font, Brushes.Black, new RectangleF(mi, y + 270, ancho, 40));
-			e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 50));
+			e.Graphics.DrawString("Descripcion: " + descripcion, font, Brushes.Black, new RectangleF(mi, y + 290, ancho, 80));
+			y = y + 30;
 			e.Graphics.DrawLine(blackPen, mi, y + 340, p2l, y + 340);
 
 			y = y + 345;
@@ -505,9 +569,12 @@ namespace Sistema_Reservaciones
 
 				e.Graphics.DrawString(cantidades[c], font, Brushes.Black, new RectangleF(mi + 5, y, 45, 15));
 				e.Graphics.DrawString(nombres[c], font, Brushes.Black, new RectangleF(mi + 45, y, 255, 15));
-				e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
+				//e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 310, y, 50, 15));
 
-				e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 350, y, 50, 15));
+				//e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 350, y, 50, 15));
+
+				e.Graphics.DrawString(precios[c], font, Brushes.Black, new RectangleF(mi + 290, y, 50, 15), izquierda);
+				e.Graphics.DrawString(totales[c], font, Brushes.Black, new RectangleF(mi + 330, y, 50, 15), izquierda);
 				y = y + 10;
 
 				subtotal = subtotal + Convert.ToInt32(totales[c]);
@@ -516,16 +583,23 @@ namespace Sistema_Reservaciones
 			//y = y + 13;
 			int anchoDinero = 380;
 			//e.Graphics.DrawLine(blackPen, mi, y + 125, p2l, y + 125);
-			e.Graphics.DrawString("Subtotal:    " + Convert.ToString(subtotal) + "  ", font, Brushes.Black, new RectangleF(mi, y + 15, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Flete:         " + precio + "  ", font, Brushes.Black, new RectangleF(mi, y + 30, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Iva:       " + iva + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Subtotal:", font, Brushes.Black, new RectangleF(mi - 45, y + 15, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(Convert.ToString(subtotal) + "  ", font, Brushes.Black, new RectangleF(mi, y + 15, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Flete:", font, Brushes.Black, new RectangleF(mi - 45, y + 30, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(precio + "  ", font, Brushes.Black, new RectangleF(mi, y + 30, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Iva:", font, Brushes.Black, new RectangleF(mi - 45, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(iva + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
 			y = y + 15;
-			e.Graphics.DrawString("Deposito:       " + deposito + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Descuento:      " + descuento + "  ", font, Brushes.Black, new RectangleF(mi, y + 60, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Total:   " + total + "  ", font, Brushes.Black, new RectangleF(mi, y + 75, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Anticipo:      " + anticipo + "  ", font, Brushes.Black, new RectangleF(mi, y + 90, anchoDinero, 20), izquierda);
-			e.Graphics.DrawString("Restante:   " + restante + "  ", font, Brushes.Black, new RectangleF(mi, y + 105, anchoDinero, 20), izquierda);
-			// e.Graphics.DrawString("------------- TICKET -------------", font, Brushes.Black, new RectangleF(0, y + 40, ancho, 20));
+			e.Graphics.DrawString("Deposito:", font, Brushes.Black, new RectangleF(mi - 45, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(deposito + "  ", font, Brushes.Black, new RectangleF(mi, y + 45, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Descuento:", font, Brushes.Black, new RectangleF(mi - 45, y + 60, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(descuento + "  ", font, Brushes.Black, new RectangleF(mi, y + 60, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Total:", font, Brushes.Black, new RectangleF(mi - 45, y + 75, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(total + "  ", font, Brushes.Black, new RectangleF(mi, y + 75, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Anticipo:", font, Brushes.Black, new RectangleF(mi - 45, y + 90, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(anticipo + "  ", font, Brushes.Black, new RectangleF(mi, y + 90, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString("Restante:", font, Brushes.Black, new RectangleF(mi - 45, y + 105, anchoDinero, 20), izquierda);
+			e.Graphics.DrawString(restante + "  ", font, Brushes.Black, new RectangleF(mi, y + 105, anchoDinero, 20), izquierda);// e.Graphics.DrawString("------------- TICKET -------------", font, Brushes.Black, new RectangleF(0, y + 40, ancho, 20));
 			e.Graphics.DrawString(
 							  "Nota: El deposito será reembolsado al momento de devolver los productos sin daños y al dia siguiente del evento."
 							  , font, Brushes.Black, new RectangleF(mi, y + 118, ancho, 50), centro);

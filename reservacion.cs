@@ -203,7 +203,7 @@ namespace Sistema_Reservaciones
                             {
                                 if (estaDisponibleProducto(idActual, ib))
                                 {
-									if ( (Convert.ToInt32(datos[0])>=1274 && Convert.ToInt32(datos[0]) <= 1285)  || (Convert.ToInt32(datos[0]) >= 1003 && Convert.ToInt32(datos[0]) <= 1070) || datos[0].Equals("1300") || datos[0].Equals("1301"))
+									if ( (Convert.ToInt32(datos[0])>=1274 && Convert.ToInt32(datos[0]) <= 1285)  || (Convert.ToInt32(datos[0]) >= 1003 && Convert.ToInt32(datos[0]) <= 1070) || datos[0].Equals("1300") || datos[0].Equals("1301") || datos[0].Equals("2317"))
 									{
 										DialogResult con = MessageBox.Show("Se esta vendiendo como paquete?"
 										 , "Atencion", MessageBoxButtons.YesNo);

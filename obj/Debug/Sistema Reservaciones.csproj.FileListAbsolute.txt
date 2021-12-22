@@ -64,3 +64,4 @@ C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.r
 C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.ProductosFaltantes.resources
 C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.depositos.resources
 C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.avctualizarUsuario.resources
+C:\Sistema Reservaciones\Sistema Reservaciones\obj\Debug\Sistema_Reservaciones.abonos.resources
