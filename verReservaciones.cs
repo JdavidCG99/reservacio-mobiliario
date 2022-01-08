@@ -585,6 +585,8 @@ namespace Sistema_Reservaciones
 			btnActu.Enabled = false;
 		}
 
+
+		
 		private void radioButton2_Click(object sender, EventArgs e)
 		{
 			if (tbBuscarCleinte.TextLength == 0)
@@ -605,7 +607,10 @@ namespace Sistema_Reservaciones
 			}
 			tbTotalDeuda.Text = "";
 		}
-
+		//	string query = "select idReserva as Id,fechaReserva as Fecha_solicitud,fechaSalida as Fecha_entrega," +
+		//        " fechaRegreso as Fecha_Recoleccion,nombre as Cliente, " +
+		//        "telefono as Celular, total as Total, anticipo as Anticipo, restante as Restante from Reserva " +
+		//        "where estatus = 1";
 		private void radioButton1_Click(object sender, EventArgs e)
 		{
 			if (tbBuscarCleinte.TextLength == 0)
@@ -613,7 +618,7 @@ namespace Sistema_Reservaciones
 				string query = "select idReserva as Id,fechaReserva as Fecha_solicitud,fechaSalida as Fecha_entrega," +
 				" fechaRegreso as Fecha_Recoleccion,nombre as Cliente, " +
 				"telefono as Celular, total as Total, anticipo as Anticipo, restante as Restante from Reserva " +
-				"where estatus = 1 and liquidacion=0";
+				"where estatus = 1 and convert(numeric(10,2),restante) > 0";
 				gvReservaciones.DataSource = conexion.llenarVistas(query);
 				tbTotalDeuda.Text = "";
 			}
@@ -622,7 +627,7 @@ namespace Sistema_Reservaciones
 				string query = "select idReserva as Id,fechaReserva as Fecha_solicitud,fechaSalida as Fecha_entrega," +
 				" fechaRegreso as Fecha_Recoleccion,nombre as Cliente, " +
 				"telefono as Celular, total as Total, anticipo as Anticipo, restante as Restante from Reserva " +
-				"where nombre like '%" + tbBuscarCleinte.Text + "%' and estatus = 1 and liquidacion=0";
+				"where nombre like '%" + tbBuscarCleinte.Text + "%' and estatus = 1 and convert(numeric(10,2),restante) > 0";
 				gvReservaciones.DataSource = conexion.llenarVistas(query);
 				tbTotalDeuda.Text = "";
 			}

@@ -18,7 +18,7 @@ namespace Sistema_Reservaciones
         {
             //cadena conexion
             //necesaria para conectar a una bdd en otra compu
-            con = new SqlConnection("Server=DESKTOP-09LLDOK\\LOLIS;Database=Sistema_Renta_Mobiliario;integrated security=true");
+            con = new SqlConnection("Server=DESKTOP-4JTTLNG;Database=Sistema_Renta_Mobiliario;integrated security=true");
             //con = new SqlConnection("Server=DESKTOP-K6GJS3D;Database=Sistema_Renta_Mobiliario;integrated security=true");
         }
         private SqlConnection conectar()

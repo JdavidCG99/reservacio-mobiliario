@@ -13,7 +13,7 @@ namespace Sistema_Reservaciones
     public partial class entegasDiarias : Form
     {
         Conexion bdd = new Conexion();
-
+		Validaciones v = new Validaciones();
         public entegasDiarias()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace Sistema_Reservaciones
         {
             lbFecha.Text = DateTime.Now.ToLongDateString();
             string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-                "r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
                 "where estatus=1 and fechaSalida='" + DateTime.Now.ToShortDateString() + "'";
             gvReservaciones.DataSource = bdd.llenarVistas(query);
         }
@@ -31,16 +31,17 @@ namespace Sistema_Reservaciones
         private void btnVerHoy_Click(object sender, EventArgs e)
         {
             string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
                 "where estatus=1 and fechaSalida='"+ DateTime.Now.ToShortDateString() + "'";
             gvReservaciones.DataSource = bdd.llenarVistas(query);
-        }
+			dtDia.Text = DateTime.Now.ToLongDateString();
+		}
 
         private void dtDia_ValueChanged(object sender, EventArgs e)
         {
             string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
-                "where estatus=1 and fechaSalida='" + dtDia.Text + "'";
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+                "where estatus=1 and fechaSalida='" + dtDia.Text + "' ";
             gvReservaciones.DataSource = bdd.llenarVistas(query);
         }
 
@@ -104,10 +105,62 @@ namespace Sistema_Reservaciones
 				string query = "update Reserva set salio = 'Si' where idReserva=" + resrevacion;
 				bdd.ejecutar(query);
 				string query2 = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-			   "r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+			   "r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
 			   "where estatus=1 and fechaRegreso='" + DateTime.Now.ToShortDateString() + "'";
 				gvReservaciones.DataSource = bdd.llenarVistas(query2);
 			}
+		}
+
+		private void btnBuscar_Click(object sender, EventArgs e)
+		{
+			if (tbFolio.TextLength == 0)
+			{
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"where estatus=1 and fechaSalida='" + dtDia.Text + "'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+			else {
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"where estatus=1 and fechaSalida='" + dtDia.Text + "' and r.idReserva = " + tbFolio.Text;
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+		}
+
+		private void tbBuscarCleinte_TextChanged(object sender, EventArgs e)
+		{
+			if (tbBuscarCleinte.TextLength == 0) {
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"where estatus=1 and fechaSalida='" + dtDia.Text + "'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+			else
+			{
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito  from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"where estatus=1 and fechaSalida='" + dtDia.Text + "' and r.nombre like '%" + tbBuscarCleinte.Text + "%'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+
+
+		}
+
+		private void tbFolio_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			v.numerosEnteros(e);
+			if (tbFolio.TextLength == 0) {
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				"r.nombre as Nombre_Cliente,f.ubicacion,r.salio as Salio,r.deposito as Deposito from Reserva as r inner join Flete as f on r.idFlete=f.idFlete " +
+				"where estatus=1 and fechaSalida='" + dtDia.Text + "'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+		}
+
+		private void tbBuscarCleinte_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			v.letras(e);
 		}
 	}
 }

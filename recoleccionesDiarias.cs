@@ -13,6 +13,7 @@ namespace Sistema_Reservaciones
     public partial class recoleccionesDiarias : Form
     {
         Conexion bdd = new Conexion();
+		Validaciones validar = new Validaciones();
         public recoleccionesDiarias()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace Sistema_Reservaciones
             lbFecha.Text = DateTime.Now.ToLongDateString();
 			dtpos.Text = DateTime.Now.ToLongDateString();
 			string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida,"+
-				" r.nombre as Nombre_Cliente,f.ubicacion,dr.idProductos,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join "+
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
 				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos "+
 				"where r.estatus = 1 and fechaRegreso ='" + DateTime.Now.ToShortDateString() + "'";
             gvReservaciones.DataSource = bdd.llenarVistas(query);
@@ -32,7 +33,7 @@ namespace Sistema_Reservaciones
         private void dtDia_ValueChanged(object sender, EventArgs e)
         {
 			string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-				" r.nombre as Nombre_Cliente,f.ubicacion,dr.idProductos,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
 				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
 				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "'";
 
@@ -51,11 +52,13 @@ namespace Sistema_Reservaciones
         private void btnVerHoy_Click_1(object sender, EventArgs e)
         {
 			string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-				 " r.nombre as Nombre_Cliente,f.ubicacion,dr.idProductos,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				 " r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
 				 "Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
 				 "where r.estatus = 1 and fechaRegreso ='" + DateTime.Now.ToShortDateString() + "'";
 			gvReservaciones.DataSource = bdd.llenarVistas(query);
-        }
+			dtDia.Text = DateTime.Now.ToLongDateString();
+			dtpos.Text = DateTime.Now.ToLongDateString();
+		}
 		private void btnPosponer_Click(object sender, EventArgs e)
 		{
 			string resrevacion = gvReservaciones.Rows[gvReservaciones.CurrentRow.Index].Cells[0].Value.ToString();
@@ -65,7 +68,7 @@ namespace Sistema_Reservaciones
 				string query = "update Reserva set fechaRegreso = '"+dtpos.Text+"' where idReserva="+resrevacion;
 				bdd.ejecutar(query);
 				string query2 = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-					" r.nombre as Nombre_Cliente,f.ubicacion,dr.idProductos,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+					" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
 					"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
 					"where r.estatus = 1 and fechaRegreso ='" + DateTime.Now.ToShortDateString() + "'";
 				gvReservaciones.DataSource = bdd.llenarVistas(query2);
@@ -83,7 +86,7 @@ namespace Sistema_Reservaciones
 				string query = "update Reserva set volvio = 'Si' , fechaRegreso='"+ DateTime.Now.AddDays(-1).ToShortDateString() + "' where idReserva=" + resrevacion;
 				bdd.ejecutar(query);
 				string query2 = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
-				 " r.nombre as Nombre_Cliente,f.ubicacion,dr.idProductos,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				 " r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
 				 "Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
 				 "where r.estatus = 1 and fechaRegreso ='" + DateTime.Now.ToShortDateString() + "'";
 				gvReservaciones.DataSource = bdd.llenarVistas(query2);
@@ -136,6 +139,63 @@ namespace Sistema_Reservaciones
 			//btnPosponer.Enabled = true;
 		}
 
-		
+		private void btnBuscar_Click(object sender, EventArgs e)
+		{
+			if (tbFolio.TextLength == 0) {
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
+				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+			else {
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
+				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "' and r.idReserva = " + tbFolio.Text;
+
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+
+			}
+						
+		}
+
+		private void tbBuscarCleinte_TextChanged(object sender, EventArgs e)
+		{
+			if (tbBuscarCleinte.TextLength == 0)
+			{
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
+				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+			else {
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
+				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "' and r.nombre like '%" + tbBuscarCleinte.Text + "%'";
+
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+		}
+
+		private void tbFolio_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			validar.numerosEnteros(e);
+			if (tbFolio.TextLength == 0)
+			{
+				string query = "select r.idReserva as id, r.fechaReserva as Fecha_Reservacion,r.fechaSalida as Fecha_salida," +
+				" r.nombre as Nombre_Cliente,f.ubicacion,r.deposito as Deposito,dr.cantidad,p.nombre,r.volvio as Regreso from Reserva as r inner join Flete as f on r.idFlete = f.idFlete inner join " +
+				"Detalle_Reserva as dr on r.idReserva = dr.idReserva inner join Productos as p on dr.idProductos = p.idProductos " +
+				"where r.estatus = 1 and fechaRegreso ='" + dtDia.Text + "'";
+				gvReservaciones.DataSource = bdd.llenarVistas(query);
+			}
+		}
+
+		private void tbBuscarCleinte_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			validar.letras(e);
+		}
 	}
 }

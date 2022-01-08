@@ -12,7 +12,7 @@ namespace Sistema_Reservaciones
     class Conexion
     {
         //datos de conexion
-        SqlConnection conex = new SqlConnection("Data Source=DESKTOP-09LLDOK\\LOLIS;Initial Catalog=Sistema_Renta_Mobiliario;Integrated Security=True");
+        SqlConnection conex = new SqlConnection("Data Source=DESKTOP-4JTTLNG;Initial Catalog=Sistema_Renta_Mobiliario;Integrated Security=True");
         //SqlConnection conex = new SqlConnection("Data Source=DESKTOP-K6GJS3D;Initial Catalog=Sistema_Renta_Mobiliario;Integrated Security=True");
         SqlCommand comando;
         SqlDataReader reader;
